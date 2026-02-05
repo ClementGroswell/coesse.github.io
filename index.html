@@ -1,163 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Coesse — One World. One Breath</title>
-
-<style>
-body{
-margin:0;
-font-family:-apple-system,BlinkMacSystemFont,system-ui;
-color:white;
-background:black;
-overflow-x:hidden;
-}
-.hero{
-min-height:100vh;
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:center;
-text-align:center;
-backdrop-filter:blur(6px);
-background:rgba(0,0,0,.35);
-padding:40px;
-}
-section{
-padding:80px 20px;
-max-width:900px;
-margin:auto;
-}
-.card{
-background:rgba(255,255,255,.08);
-border-radius:24px;
-padding:30px;
-margin-bottom:30px;
-backdrop-filter:blur(10px);
-}
-button{
-background:#002FA7;
-border:none;
-padding:14px 28px;
-border-radius:18px;
-color:white;
-font-size:16px;
-cursor:pointer;
-}
-input{
-width:100%;
-padding:12px;
-border-radius:12px;
-border:none;
-margin-bottom:12px;
-}
-footer{
-padding:40px;
-text-align:center;
-opacity:.7;
-}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<div class="hero">
-<h1 style="font-size:64px;">Coesse</h1>
-<h2>One World. One Breath</h2>
-<p>Mobilizing global volunteers to protect the planet and defend human rights.</p>
-<button onclick="document.getElementById('join').scrollIntoView()">Join Us</button>
-</div>
+<header class="hero">
+  <h1>Coesse</h1>
+  <p class="tagline">One World. One Breath</p>
+  <a class="cta" href="mission.html">Our Mission</a>
+</header>
 
-<section>
-<div class="card">
-<h2>Mission</h2>
-<p>To mobilize global volunteers to protect the planet, defend human rights, and foster coexistence for future generations.</p>
-</div>
-
-<div class="card">
-<h2>Vision</h2>
-<p>A world where humanity and nature coexist in harmony and every life is respected.</p>
-</div>
-
-<div class="card">
-<h2>Core Values</h2>
-<ul>
-<li>Coexistence</li>
-<li>Human Dignity</li>
-<li>Planetary Responsibility</li>
-<li>Collective Action</li>
-<li>Integrity & Transparency</li>
-</ul>
-</div>
+<section class="section">
+  <h2>Who We Are</h2>
+  <p>
+    Coesse is a global nonprofit volunteer organization dedicated to protecting the planet
+    and defending human rights for present and future generations.
+  </p>
 </section>
 
-<section id="join">
-<div class="card">
-<h2>Volunteer Registration</h2>
-<input id="email" placeholder="Legal Email"/>
-<input id="password" type="password" placeholder="Password"/>
-<input id="id" placeholder="Legal ID"/>
-
-<button onclick="secureRegister()">Secure Register</button>
-<p id="status"></p>
-</div>
+<section class="section">
+  <h2>Our Vision</h2>
+  <p>
+    A world where humanity and nature coexist in harmony, every life is respected,
+    and collective action shapes a just and sustainable future.
+  </p>
 </section>
 
-<section>
-<div class="card">
-<h2>Privacy Policy</h2>
-<p>We respect your privacy and never sell personal data. You may request deletion at any time.</p>
-</div>
-
-<div class="card">
-<h2>Legal Notice</h2>
-<p>All activities are humanitarian and educational. No financial or legal advice provided.</p>
-</div>
+<section class="section contact">
+  <h2>Connect With Us</h2>
+  <p>Email: <a href="mailto:coesseorg@proton.me">coesseorg@proton.me</a></p>
+  <p>X: <a href="https://x.com/CoesseOrg" target="_blank">https://x.com/CoesseOrg</a></p>
 </section>
 
 <footer>
-Contact: coesseorg@proton.me  
-<br/>
-X: https://x.com/CoesseOrg
+  <a href="privacy.html">Privacy Policy</a> |
+  <a href="legal.html">Legal Notice</a>
 </footer>
-
-<script>
-function season(){
-const m=new Date().getMonth();
-if([11,0,1].includes(m)) return "winter";
-if([2,3,4].includes(m)) return "spring";
-if([5,6,7].includes(m)) return "summer";
-return "autumn";
-}
-
-document.body.style.backgroundImage =
-`url(https://source.unsplash.com/2560x1440/?${season()},nature)`;
-document.body.style.backgroundSize="cover";
-document.body.style.backgroundAttachment="fixed";
-
-async function hash(str){
-const buf=await crypto.subtle.digest("SHA-512",new TextEncoder().encode(str));
-return [...new Uint8Array(buf)].map(b=>b.toString(16).padStart(2,"0")).join("");
-}
-
-async function secureRegister(){
-const email=document.getElementById("email").value;
-const pass=document.getElementById("password").value;
-const id=document.getElementById("id").value;
-
-const payload={
-email,
-pass:await hash(pass),
-id:await hash(id)
-};
-
-localStorage.setItem("coesseUser", btoa(JSON.stringify(payload)));
-
-document.getElementById("status").innerText="Registered securely ✔";
-}
-</script>
 
 </body>
 </html>
-<!-- deploy trigger -->
