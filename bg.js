@@ -1,3 +1,4 @@
+alert("bg.js running");
 function seasonFromMonth(m) {
   if (m >= 3 && m <= 5) return "spring";
   if (m >= 6 && m <= 8) return "summer";
