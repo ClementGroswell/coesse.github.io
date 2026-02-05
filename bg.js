@@ -1,12 +1,11 @@
-<script>
-const seasonMap = month => {
-  if (month >= 3 && month <= 5) return "spring";
-  if (month >= 6 && month <= 8) return "summer";
-  if (month >= 9 && month <= 11) return "autumn";
+function seasonFromMonth(m) {
+  if (m >= 3 && m <= 5) return "spring";
+  if (m >= 6 && m <= 8) return "summer";
+  if (m >= 9 && m <= 11) return "autumn";
   return "winter";
-};
+}
 
-const getSeason = () => seasonMap(new Date().getMonth() + 1);
+const season = seasonFromMonth(new Date().getMonth() + 1);
 
 const keywords = {
   spring: "spring nature city skyline",
@@ -15,11 +14,9 @@ const keywords = {
   winter: "winter snow city night"
 };
 
-async function setDynamicBackground() {
-  const season = getSeason();
-  const url = `https://source.unsplash.com/2400x1600/?${keywords[season]}`;
-  document.body.style.background = `url(${url}) center/cover fixed no-repeat`;
-}
+const imgUrl = `https://source.unsplash.com/2400x1600/?${keywords[season]}`;
 
-setDynamicBackground();
-</script>
+document.body.style.backgroundImage = `url(${imgUrl})`;
+document.body.style.backgroundSize = "cover";
+document.body.style.backgroundPosition = "center";
+document.body.style.backgroundAttachment = "fixed";
