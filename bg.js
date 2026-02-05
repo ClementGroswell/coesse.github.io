@@ -1,9 +1,8 @@
 // ==========================
-// Coesse 动态背景 vFinal
-// 自动季节 + 2K风景 + 滚动视差 + 粒子动效 + 多图缓存
+// Coesse 动态背景 vUltimate
+// 自动季节 + 2K风景 + 滚动视差 + 粒子动效 + 多图循环 + 滚动浮动元素
 // ==========================
 
-// 季节关键词
 const keywordsMap = {
   spring: ["spring nature", "spring city", "flowers city"],
   summer: ["summer beach", "summer city skyline", "sunny city"],
@@ -11,7 +10,6 @@ const keywordsMap = {
   winter: ["winter snow", "winter city skyline", "winter nature"]
 };
 
-// 判断季节
 function getSeason(month, latitude) {
   if (latitude >= 0) {
     if (month >= 3 && month <= 5) return "spring";
@@ -26,12 +24,10 @@ function getSeason(month, latitude) {
   }
 }
 
-// 随机选择
 function randomChoice(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 }
 
-// 预加载图片
 function preloadImage(url) {
   return new Promise(resolve => {
     const img = new Image();
@@ -40,7 +36,6 @@ function preloadImage(url) {
   });
 }
 
-// 设置背景
 async function setDynamicBackground() {
   try {
     const res = await fetch("https://ipapi.co/json/");
@@ -51,38 +46,29 @@ async function setDynamicBackground() {
     const season = getSeason(month, latitude);
     const keywordArray = keywordsMap[season];
 
-    // 随机选择 3 张图片预加载
+    // 随机选择 4 张图片循环使用
     const selectedKeywords = [];
-    for (let i = 0; i < 3; i++) {
-      selectedKeywords.push(randomChoice(keywordArray));
-    }
+    for (let i = 0; i < 4; i++) selectedKeywords.push(randomChoice(keywordArray));
 
     const imageUrls = selectedKeywords.map(
       k => `https://source.unsplash.com/2560x1440/?${encodeURIComponent(k)}`
     );
 
-    // 预加载所有图片
     await Promise.all(imageUrls.map(url => preloadImage(url)));
 
     let index = 0;
     const setBackground = () => {
       document.body.style.transition = "background-image 1.5s ease-in-out";
       document.body.style.backgroundImage = `url(${imageUrls[index]})`;
-      document.body.style.backgroundSize = "cover";
-      document.body.style.backgroundPosition = "center";
-      document.body.style.backgroundAttachment = "fixed";
       index = (index + 1) % imageUrls.length;
     };
 
-    // 初始背景
     setBackground();
-    // 每 20 秒自动切换
     setInterval(setBackground, 20000);
 
-    // 初始化粒子 + 视差
     initParticles();
-
-    console.log("Dynamic background ready with seasonal images:", imageUrls);
+    initScrollEffects();
+    console.log("Dynamic background loaded with cycle:", imageUrls);
   } catch (err) {
     console.error("Failed to load dynamic background:", err);
   }
@@ -138,8 +124,22 @@ function initParticles() {
     height = canvas.height = window.innerHeight;
   });
 
+  // 滚动视差
   window.addEventListener("scroll", () => {
     canvas.style.transform = `translateY(${window.scrollY * 0.2}px)`;
+  });
+}
+
+// ==========================
+// 页面滚动浮动动画
+// ==========================
+function initScrollEffects() {
+  const sections = document.querySelectorAll(".section, .hero");
+  window.addEventListener("scroll", () => {
+    const scrollY = window.scrollY;
+    sections.forEach((sec, i) => {
+      sec.style.transform = `translateY(${scrollY * 0.03 * (i+1)}px)`;
+    });
   });
 }
 
