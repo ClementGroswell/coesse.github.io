@@ -1,46 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Coesse — One World. One Breath</title>
-<link rel="stylesheet" href="style.css">
-<script src="bg.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coesse | One World. One Breath.</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --text-color: #ffffff;
+            --overlay-color: rgba(0, 0, 0, 0.45);
+        }
+        
+        body, html {
+            margin: 0; padding: 0; width: 100%; height: 100%;
+            font-family: 'Inter', sans-serif; color: var(--text-color);
+            background-color: #000;
+            background: linear-gradient(var(--overlay-color), var(--overlay-color)), 
+                        url('bg.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex; justify-content: center; align-items: center; overflow: hidden;
+        }
+
+        .container {
+            text-align: center; padding: 50px 40px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 650px; width: 85%;
+            animation: fadeIn 2s ease-out;
+        }
+
+        h1 { font-size: clamp(2.5rem, 8vw, 5rem); letter-spacing: 0.8rem; margin: 0; font-weight: 200; text-transform: uppercase; }
+        .slogan { font-size: clamp(0.9rem, 2vw, 1.5rem); letter-spacing: 0.5rem; margin-top: 15px; text-transform: uppercase; color: rgba(255,255,255,0.7); }
+
+        .manifesto { margin-top: 35px; line-height: 1.8; font-size: 1rem; font-weight: 300; opacity: 0.9; }
+        
+        .requirements {
+            margin: 25px auto; padding: 15px; border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.85rem; color: #aaa;
+        }
+
+        /* Verification Box */
+        .verification-box {
+            background: rgba(0,0,0,0.3);
+            padding: 20px;
+            border-radius: 4px;
+            margin-top: 30px;
+            display: inline-block;
+        }
+
+        .captcha-label {
+            display: block;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+            color: #ccc;
+        }
+
+        #math-question {
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        #captcha-input {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.3);
+            color: #fff;
+            padding: 10px;
+            width: 80px;
+            text-align: center;
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .cta-button {
+            display: block; color: #fff; text-decoration: none; border: 1px solid #fff;
+            padding: 14px 40px; font-size: 0.85rem; letter-spacing: 2px;
+            text-transform: uppercase; transition: all 0.4s ease; cursor: pointer; background: none;
+            margin: 0 auto;
+        }
+
+        .cta-button:hover { background: #fff; color: #000; }
+
+        footer {
+            position: absolute; bottom: 30px; width: 100%; display: flex;
+            justify-content: space-between; padding: 0 50px; box-sizing: border-box;
+            font-size: 0.7rem; color: rgba(255, 255, 255, 0.3);
+        }
+        footer a { color: inherit; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
 </head>
 <body>
 
-<header class="hero">
-  <h1>Coesse</h1>
-  <p class="tagline">One World. One Breath</p>
-  <a class="cta" href="mission.html">Our Mission</a>
-</header>
+    <div class="container">
+        <h1>COESSE</h1>
+        <div class="slogan">One World. One Breath.</div>
+        
+        <div class="manifesto">
+            We seek human connection, not automated data.<br>
+            Prove your essence to continue.
+        </div>
 
-<section class="section">
-  <h2>Who We Are</h2>
-  <p>
-    Coesse is a global nonprofit volunteer organization dedicated to protecting the planet
-    and defending human rights for present and future generations.
-  </p>
-</section>
+        <div class="requirements">
+            Only <strong>permanent personal or corporate emails</strong> are accepted.<br>
+            Verification required to prevent automated spam.
+        </div>
 
-<section class="section">
-  <h2>Our Vision</h2>
-  <p>
-    A world where humanity and nature coexist in harmony, every life is respected,
-    and collective action shapes a just and sustainable future.
-  </p>
-</section>
+        <div class="verification-box">
+            <span class="captcha-label">HUMAN VERIFICATION:</span>
+            <div id="math-question">Loading...</div>
+            <input type="number" id="captcha-input" placeholder="?">
+            <button onclick="checkAndConnect()" class="cta-button">Connect with us</button>
+        </div>
+    </div>
 
-<section class="section contact">
-  <h2>Connect With Us</h2>
-  <p>Email: <a href="mailto:coesseorg@proton.me">coesseorg@proton.me</a></p>
-  <p>X: <a href="https://x.com/CoesseOrg" target="_blank">https://x.com/CoesseOrg</a></p>
-</section>
+    <footer>
+        <div class="left">Initiated by MrClement | © 2026 Coesse</div>
+        <div class="right">Photo by <a href="https://www.pexels.com/@therato-19413204/" target="_blank">Therato</a></div>
+    </footer>
 
-<footer>
-  <a href="privacy.html">Privacy Policy</a> |
-  <a href="legal.html">Legal Notice</a>
-</footer>
+    <script>
+        // Generate random math question
+        let num1 = Math.floor(Math.random() * 10) + 1;
+        let num2 = Math.floor(Math.random() * 10) + 1;
+        let correctAnswer = num1 + num2;
+
+        document.getElementById('math-question').innerText = `${num1} + ${num2} =`;
+
+        function checkAndConnect() {
+            const userAnswer = parseInt(document.getElementById('captcha-input').value);
+            
+            if (userAnswer !== correctAnswer) {
+                alert("Incorrect verification. Please try again.");
+                // Refresh numbers on wrong answer
+                num1 = Math.floor(Math.random() * 10) + 1;
+                num2 = Math.floor(Math.random() * 10) + 1;
+                correctAnswer = num1 + num2;
+                document.getElementById('math-question').innerText = `${num1} + ${num2} =`;
+                document.getElementById('captcha-input').value = "";
+                return;
+            }
+
+            // Success: Proceed to Email
+            const subject = encodeURIComponent("Coesse Connection Request");
+            const body = encodeURIComponent(
+"Identity: [My Alias]\n" +
+"Email Status: Permanent personal/corporate address confirmed.\n\n" +
+"My Intent: "
+            );
+            
+            window.location.href = `mailto:oneworld@coesse.org?subject=${subject}&body=${body}`;
+        }
+    </script>
 
 </body>
 </html>
