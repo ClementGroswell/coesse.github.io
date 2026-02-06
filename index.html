@@ -10,8 +10,8 @@
             --apple-bg: #000;
             --apple-text: #f5f5f7;
             --apple-sec: #86868b;
-            --glass: rgba(15, 15, 15, 0.7);
-            --border: rgba(255, 255, 255, 0.12);
+            --glass: rgba(15, 15, 15, 0.75);
+            --border: rgba(255, 255, 255, 0.15);
         }
 
         body, html {
@@ -21,83 +21,77 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* 核心修复：背景层级与路径 */
+        /* 背景：强制刷新缓存 */
         .hero-bg {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            /* 叠加渐变确保文字清晰 */
-            background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.9) 100%),
-                        url('bg.jpg'); /* 注意：确保 bg.jpg 与 index.html 在同一个根目录下 */
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            z-index: -1;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.9) 100%),
+                        url('bg.jpg?v=2.0');
+            background-size: cover; background-position: center; z-index: -1;
         }
 
         .main-wrapper {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 80px 24px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            max-width: 600px; margin: 0 auto; padding: 100px 24px;
+            display: flex; flex-direction: column; align-items: center;
         }
 
-        header { text-align: center; margin-bottom: 60px; }
+        header { text-align: center; margin-bottom: 70px; width: 100%; }
         h1 { font-size: clamp(3rem, 12vw, 5rem); font-weight: 100; letter-spacing: 0.12em; margin: 0; }
-        .tagline { 
-            font-size: 0.85rem; font-weight: 400; letter-spacing: 0.5em; 
-            color: var(--apple-sec); text-transform: uppercase; margin-top: 20px; 
-        }
+        .tagline { font-size: 0.85rem; font-weight: 400; letter-spacing: 0.5em; color: var(--apple-sec); text-transform: uppercase; margin-top: 15px; }
 
-        /* 内容块：加粗美学 */
+        /* 卡片 */
         .card {
-            background: var(--glass);
-            backdrop-filter: blur(50px);
-            -webkit-backdrop-filter: blur(50px);
-            border: 1px solid var(--border);
-            border-radius: 28px;
-            padding: 35px;
-            margin-bottom: 24px;
-            width: 100%;
-            box-sizing: border-box;
+            background: var(--glass); backdrop-filter: blur(50px); -webkit-backdrop-filter: blur(50px);
+            border: 1px solid var(--border); border-radius: 30px;
+            padding: 40px; margin-bottom: 24px; width: 100%; box-sizing: border-box;
         }
         
-        .label { 
-            font-size: 0.8rem; font-weight: 900; color: #fff; 
-            text-transform: uppercase; letter-spacing: 0.3em; 
-            display: block; margin-bottom: 20px; 
-        }
-
+        .label { font-size: 0.8rem; font-weight: 900; color: #fff; text-transform: uppercase; letter-spacing: 0.3em; display: block; margin-bottom: 25px; }
         .card-p { font-size: 1.05rem; line-height: 1.8; font-weight: 300; color: rgba(255,255,255,0.9); }
         .card-p b { font-weight: 800; color: #fff; }
 
-        /* 注册区：精致小巧 */
-        .reg-container { width: 100%; max-width: 320px; margin-top: 20px; }
+        /* 注册容器：缩小且精致 */
+        .reg-container { width: 100%; max-width: 320px; margin-top: 20px; text-align: center; }
         .reg-trigger {
             width: 100%; padding: 16px; background: #fff; border-radius: 999px;
-            border: none; color: #000; font-size: 0.95rem; font-weight: 800;
-            cursor: pointer; text-align: center;
+            border: none; color: #000; font-size: 0.95rem; font-weight: 900;
+            cursor: pointer; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
         
         .reg-panel { 
             max-height: 0; overflow: hidden; transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            background: rgba(0, 0, 0, 0.5); border-radius: 0 0 24px 24px;
+            background: rgba(10, 10, 10, 0.9); border-radius: 0 0 25px 25px; margin-top: -10px;
         }
-        .reg-panel.open { max-height: 400px; padding: 25px; border: 1px solid var(--border); border-top: none; }
+        .reg-panel.open { max-height: 500px; padding: 30px; border: 1px solid var(--border); border-top: none; }
 
         .input-mini {
             width: 100%; background: rgba(255,255,255,0.08); border: 1px solid var(--border);
-            border-radius: 12px; padding: 14px; color: #fff; font-size: 0.9rem; margin-bottom: 12px; box-sizing: border-box; outline: none;
+            border-radius: 14px; padding: 14px; color: #fff; font-size: 0.9rem; margin-bottom: 12px; box-sizing: border-box; outline: none;
         }
 
-        /* 页脚：全英文 */
-        footer {
-            width: 100%; margin-top: 80px; padding: 40px 0; text-align: center;
-            border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.8rem; line-height: 2; color: #555;
+        /* 滑动验证轨道 */
+        .slider-track {
+            width: 100%; height: 44px; background: rgba(255,255,255,0.05); border-radius: 22px;
+            position: relative; margin: 15px 0; border: 1px solid var(--border); overflow: hidden;
         }
-        .footer-mail { color: #888; font-weight: 800; text-decoration: none; display: block; margin-bottom: 8px; }
+        .slider-text { position: absolute; width: 100%; text-align: center; line-height: 44px; font-size: 0.75rem; color: #666; font-weight: 700; pointer-events: none; }
+        .slider-handle {
+            width: 40px; height: 38px; background: #fff; border-radius: 20px;
+            position: absolute; left: 3px; top: 2px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+        }
+
+        /* 注册确认按钮 */
+        .btn-submit {
+            width: 100%; padding: 15px; border-radius: 12px; border: none;
+            background: #fff; color: #000; font-weight: 900; font-size: 0.9rem;
+            cursor: pointer; opacity: 0.2; pointer-events: none; transition: 0.4s;
+        }
+        .btn-submit.active { opacity: 1; pointer-events: auto; background: #34c759; color: #fff; }
+
+        footer {
+            width: 100%; margin-top: 100px; padding: 60px 0; text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.85rem; line-height: 2; color: #555;
+        }
     </style>
 </head>
 <body>
@@ -107,7 +101,7 @@
     <div class="main-wrapper">
         <header>
             <h1>COESSE</h1>
-            <div class="tagline">One World. One Breath.</div>
+            <div class="tagline">One World. One Breath</div>
         </header>
 
         <div class="card">
@@ -117,28 +111,80 @@
             </p>
         </div>
 
-        <div class="card">
-            <span class="label">Mission & Vision</span>
-            <p class="card-p">
-                <b>Mission:</b> To mobilize global volunteers to protect the planet and uphold human rights.<br><br>
-                <b>Vision:</b> To create a world where all life is respected by connecting volunteers around the world!
-            </p>
-        </div>
-
         <div class="reg-container">
-            <button class="reg-trigger" onclick="document.getElementById('panel').classList.toggle('open')">Join Action</button>
+            <button class="reg-trigger" onclick="document.getElementById('panel').classList.toggle('open')">Join Individual Action</button>
             <div id="panel" class="reg-panel">
-                <input type="email" class="input-mini" placeholder="Email Address">
-                <input type="password" class="input-mini" placeholder="Password">
-                <button style="width:100%; padding:14px; border-radius:12px; border:none; background:#34c759; color:#fff; font-weight:800; cursor:pointer;">Confirm</button>
+                <form id="regForm" onsubmit="handleRegister(event)">
+                    <input type="email" id="email" class="input-mini" placeholder="Email Address" required>
+                    <input type="password" id="pw" class="input-mini" placeholder="Password" required>
+                    
+                    <div style="font-size: 0.85rem; color: #fff; margin: 10px 0; font-weight: 800;" id="math-label">Verify: 5 + 3 = ?</div>
+                    <input type="number" id="math-ans" class="input-mini" placeholder="Result" required>
+
+                    <div class="slider-track" id="track">
+                        <div class="slider-text">Slide to unlock</div>
+                        <div class="slider-handle" id="handle">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="3"><path d="M9 18l6-6-6-6"/></svg>
+                        </div>
+                    </div>
+
+                    <button type="submit" id="regBtn" class="btn-submit">Register Now</button>
+                </form>
             </div>
         </div>
 
         <footer>
-            <a href="mailto:oneworld@coesse.org" class="footer-mail">If you have any questions, contact us: oneworld@coesse.org</a>
+            <div style="color: #888; font-weight: 800; margin-bottom: 10px;">oneworld@coesse.org</div>
             <div>All content is protected by copyright © 2026 Coesse.org.</div>
         </footer>
     </div>
 
+    <script>
+        // 随机逻辑验证
+        const n1 = Math.floor(Math.random() * 9) + 1;
+        const n2 = Math.floor(Math.random() * 9) + 1;
+        const correctAns = n1 + n2;
+        document.getElementById('math-label').innerText = `Human Check: ${n1} + ${n2} = ?`;
+
+        const handle = document.getElementById('handle'), track = document.getElementById('track'), regBtn = document.getElementById('regBtn');
+        let isUnlocked = false;
+
+        // 滑动逻辑
+        handle.onmousedown = handle.ontouchstart = function(e) {
+            const startX = (e.clientX || e.touches[0].clientX);
+            const max = track.offsetWidth - handle.offsetWidth - 6;
+            
+            document.onmousemove = document.ontouchmove = function(ev) {
+                let moveX = (ev.clientX || ev.touches[0].clientX) - startX;
+                if (moveX < 0) moveX = 0;
+                if (moveX > max) moveX = max;
+                handle.style.transform = `translateX(${moveX}px)`;
+                
+                if (moveX >= max - 5) {
+                    isUnlocked = true;
+                    handle.style.background = '#34c759';
+                    regBtn.classList.add('active');
+                    document.onmousemove = document.ontouchmove = null;
+                }
+            };
+            document.onmouseup = document.ontouchend = function() {
+                document.onmousemove = document.ontouchmove = null;
+                if (!isUnlocked) handle.style.transform = 'translateX(0)';
+            };
+        };
+
+        // 提交逻辑：这里你可以改为发送到你的邮箱
+        function handleRegister(e) {
+            e.preventDefault();
+            const userAns = document.getElementById('math-ans').value;
+            if (parseInt(userAns) !== correctAns) {
+                alert("Math check failed. Please try again.");
+                return;
+            }
+            // 模拟注册成功
+            alert("Success! Your action has been recorded locally. We will contact you at " + document.getElementById('email').value);
+            window.location.reload(); 
+        }
+    </script>
 </body>
 </html>
