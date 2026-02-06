@@ -1,39 +1,25 @@
-// Firebase SDK 已在 HTML head 引入
+// Firebase 初始化（可选）
+/*
+const firebaseConfig = {
+  apiKey:"你的APIKEY",
+  authDomain:"你的项目.firebaseapp.com",
+  projectId:"你的项目ID"
+};
+firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
-const db = firebase.firestore();
+*/
 
-// 注册
-async function register(){
+// 注册函数（前端演示，可集成 Firebase 或其他第三方）
+function register(){
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
-  if(!email||!password){alert("Fill all fields"); return;}
-  try{
-    const userCredential = await auth.createUserWithEmailAndPassword(email,password);
-    await userCredential.user.sendEmailVerification();
-    alert("Verification email sent! Check your inbox.");
-  }catch(e){alert(e.message);}
-}
-
-// 登录
-async function login(){
-  const email = document.getElementById("loginEmail").value;
-  const password = document.getElementById("loginPassword").value;
-  try{
-    await auth.signInWithEmailAndPassword(email,password);
-    if(!auth.currentUser.emailVerified){
-      alert("Please verify your email first");
-      return;
-    }
-    alert("Login success");
-  }catch(e){alert(e.message);}
+  if(!email || !password){alert("Fill all fields"); return;}
+  alert("Registration submitted! (Integrate Firebase for real email verification)");
 }
 
 // 找回密码
-async function resetPassword(){
+function resetPassword(){
   const email = document.getElementById("resetEmail").value;
   if(!email){alert("Enter email"); return;}
-  try{
-    await auth.sendPasswordResetEmail(email);
-    alert("Check your inbox for reset link");
-  }catch(e){alert(e.message);}
+  alert("Password reset requested! (Integrate Firebase for real email link)");
 }
