@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Coesse | One World. One Breath.</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --apple-text: #f5f5f7;
-            --apple-sec: #a1a1a6;
-            --glass: rgba(0, 0, 0, 0.7);
-            --border: rgba(255, 255, 255, 0.18);
+            --apple-sec: #86868b;
+            --glass: rgba(28, 28, 30, 0.7);
+            --border: rgba(255, 255, 255, 0.15);
         }
 
         body, html {
@@ -20,83 +20,76 @@
             -webkit-font-smoothing: antialiased; overflow-x: hidden;
         }
 
+        /* 强制极光背景 - 增加兜底渐变确保不黑屏 */
         .hero-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.9) 100%),
-                        url('https://images.unsplash.com/photo-1531366930491-815597f39176?auto=format&fit=crop&w=2560&q=90');
+            background: linear-gradient(180deg, rgba(0,25,15,0.8) 0%, rgba(0,0,0,1) 100%),
+                        url('https://images.unsplash.com/photo-1483366759340-02a865b4528c?auto=format&fit=crop&w=2560&q=80');
             background-size: cover; background-position: center; z-index: -1;
         }
 
         .main-container {
-            max-width: 600px; margin: 0 auto; padding: 100px 24px;
+            max-width: 500px; margin: 0 auto; padding: 80px 20px;
             display: flex; flex-direction: column; align-items: center;
         }
 
-        header { text-align: center; margin-bottom: 70px; width: 100%; }
-        h1 { font-size: clamp(3rem, 12vw, 5rem); font-weight: 100; letter-spacing: 0.08em; margin: 0; }
-        
-        /* 标语：保持单行，略微加粗以增加易读性 */
+        header { text-align: center; margin-bottom: 50px; width: 100%; }
+        h1 { font-size: 3.5rem; font-weight: 100; letter-spacing: 0.1em; margin: 0; }
         .tagline { 
-            font-size: clamp(0.75rem, 4vw, 1.1rem); font-weight: 400; letter-spacing: 0.5em; 
-            color: var(--apple-sec); text-transform: uppercase; margin-top: 18px;
+            font-size: 0.85rem; font-weight: 400; letter-spacing: 0.4em; 
+            color: var(--apple-sec); text-transform: uppercase; margin-top: 15px;
             white-space: nowrap; width: 100%; text-align: center;
         }
 
+        /* 统一卡片样式 */
         .card {
-            background: var(--glass); backdrop-filter: blur(50px); -webkit-backdrop-filter: blur(50px);
-            border: 1px solid var(--border); border-radius: 28px;
-            padding: 40px; margin-bottom: 24px; width: 100%; box-sizing: border-box;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            background: var(--glass); backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
+            border: 1px solid var(--border); border-radius: 24px;
+            padding: 28px; margin-bottom: 20px; width: 100%; box-sizing: border-box;
+            animation: fadeIn 0.8s ease-out forwards;
         }
-
-        /* 标签：使用 700 权重，增加视觉锚点 */
-        .label { 
-            font-size: 0.8rem; font-weight: 700; color: #fff; 
-            text-transform: uppercase; letter-spacing: 0.2em; 
-            display: block; margin-bottom: 20px; border-left: 3px solid #fff; padding-left: 12px;
-        }
-
-        /* 正文中的加粗：使用 800 权重，产生强烈的视觉对比 */
-        .card-p { font-size: 1.1rem; line-height: 1.75; font-weight: 300; margin: 0; color: rgba(255,255,255,0.9); }
+        .label { font-size: 0.75rem; font-weight: 800; color: #fff; text-transform: uppercase; letter-spacing: 0.2em; display: block; margin-bottom: 12px; }
+        .card-p { font-size: 0.95rem; line-height: 1.7; font-weight: 300; margin: 0; color: rgba(255,255,255,0.9); }
         .card-p b { font-weight: 800; color: #fff; }
 
-        /* 折叠注册区域 */
-        .fold-container { width: 100%; margin-top: 20px; }
-        .fold-trigger {
-            width: 100%; padding: 24px; background: rgba(255,255,255,0.08); border-radius: 24px;
-            border: 1px solid var(--border); color: #fff; font-size: 1.1rem; font-weight: 700;
-            cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: 0.3s;
-        }
-        .fold-trigger:after { content: '+'; font-size: 1.6rem; font-weight: 200; transition: 0.4s; }
-        .fold-trigger.open:after { transform: rotate(45deg); }
-        
-        .fold-content { 
-            max-height: 0; overflow: hidden; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            background: rgba(0, 0, 0, 0.4); margin-top: -10px; border-radius: 0 0 24px 24px;
-        }
-        .fold-content.show { max-height: 600px; padding: 40px; border: 1px solid var(--border); border-top: none; }
+        /* 诞生原因特别样式 */
+        .origin-card { border-left: 4px solid #34c759; }
 
-        .input-box {
-            width: 100%; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px;
-            padding: 20px; color: #fff; font-size: 1rem; margin-bottom: 20px; box-sizing: border-box; outline: none;
+        /* 精简后的折叠注册 */
+        .reg-fold { width: 100%; margin-top: 10px; }
+        .reg-trigger {
+            width: 100%; padding: 18px; background: rgba(255,255,255,0.08); border-radius: 20px;
+            border: 1px solid var(--border); color: #fff; font-size: 0.9rem; font-weight: 700;
+            cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+        }
+        .reg-ui { 
+            max-height: 0; overflow: hidden; transition: all 0.4s ease;
+            background: rgba(0, 0, 0, 0.4); border-radius: 0 0 20px 20px;
+        }
+        .reg-ui.show { max-height: 400px; padding: 25px; border: 1px solid var(--border); border-top: none; }
+
+        /* 缩小输入框 */
+        .input-mini {
+            width: 100%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); 
+            border-radius: 12px; padding: 14px; color: #fff; font-size: 0.9rem; margin-bottom: 12px; box-sizing: border-box; outline: none;
         }
 
-        .track { width: 100%; height: 56px; background: rgba(255,255,255,0.05); border-radius: 28px; position: relative; margin: 25px 0; border: 1px solid rgba(255,255,255,0.1); }
-        #handle { width: 50px; height: 48px; background: #fff; border-radius: 24px; position: absolute; left: 4px; top: 3px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.5); }
+        .track-mini { width: 100%; height: 44px; background: rgba(255,255,255,0.05); border-radius: 22px; position: relative; margin: 15px 0; border: 1px solid rgba(255,255,255,0.1); }
+        #handle-mini { width: 40px; height: 38px; background: #fff; border-radius: 20px; position: absolute; left: 3px; top: 2px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
 
-        .reg-btn {
-            width: 100%; padding: 20px; border-radius: 999px; border: none;
-            background: #fff; color: #000; font-size: 1.1rem; font-weight: 800;
-            cursor: pointer; opacity: 0.2; pointer-events: none; transition: 0.4s;
+        .reg-btn-mini {
+            width: 100%; padding: 14px; border-radius: 999px; border: none;
+            background: #fff; color: #000; font-size: 0.9rem; font-weight: 800;
+            cursor: pointer; opacity: 0.2; pointer-events: none;
         }
-        .reg-btn.active { opacity: 1; pointer-events: auto; }
+        .reg-btn-mini.active { opacity: 1; pointer-events: auto; }
 
         footer {
-            width: 100%; margin-top: 120px; padding: 50px 0; text-align: center;
-            border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.9rem; color: #666; font-weight: 300;
+            width: 100%; margin-top: 80px; padding: 40px 0; text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.75rem; color: #555;
         }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
@@ -109,83 +102,65 @@
             <div class="tagline">One World. One Breath</div>
         </header>
 
-        <div class="card">
-            <span class="label">Organization</span>
-            <p class="card-p">Coesse is a global nonprofit volunteer organization dedicated to protecting the planet and defending human rights.</p>
+        <div class="card origin-card">
+            <span class="label">Origin</span>
+            <p class="card-p">
+                Coesse was born from the observation that most organizations overlook <b>the power of the individual</b>. We believe that global change starts from the ordinary—respecting others and recycling a single bottle are the beginnings of <b>defending human rights and our planet</b>.
+            </p>
         </div>
 
         <div class="card">
-            <span class="label">Mission & Vision</span>
+            <span class="label">Our Commitment</span>
             <p class="card-p">
                 <b>Mission:</b> To mobilize global volunteers to protect the planet and uphold and promote human rights.<br><br>
                 <b>Vision:</b> To create a world where all life is respected and sustainable by connecting volunteers around the world!
             </p>
         </div>
 
-        <div class="fold-container">
-            <div class="fold-trigger" id="trigger" onclick="toggleFold()">Register for Coesse</div>
-            <div id="fold-ui" class="fold-content">
-                <input type="email" id="email" class="input-box" placeholder="Email Address">
-                <input type="password" id="pw" class="input-box" placeholder="Password">
+        <div class="reg-fold">
+            <div class="reg-trigger" onclick="this.nextElementSibling.classList.toggle('show')">Join Individual Action</div>
+            <div class="reg-ui">
+                <input type="email" id="m-email" class="input-mini" placeholder="Email">
+                <input type="password" id="m-pw" class="input-mini" placeholder="Password">
                 
-                <div style="font-size: 1rem; color: #fff; margin-bottom: 12px; font-weight: 700;" id="math-q">...</div>
-                <input type="number" id="math-ans" class="input-box" placeholder="Result" style="width: 140px;">
+                <div style="font-size: 0.8rem; color: #fff; margin-bottom: 8px; font-weight: 700;" id="m-math">...</div>
+                <input type="number" id="m-ans" class="input-mini" placeholder="Answer" style="width: 80px;">
 
-                <div class="track" id="track">
-                    <div style="position:absolute; width:100%; text-align:center; line-height:56px; font-size:0.9rem; color:#888; pointer-events:none; font-weight:600;">Slide to confirm</div>
-                    <div id="handle">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="3"><path d="M9 18l6-6-6-6"/></svg>
-                    </div>
+                <div class="track-mini" id="m-track">
+                    <div style="position:absolute; width:100%; text-align:center; line-height:44px; font-size:0.7rem; color:#666; pointer-events:none;">Slide to confirm</div>
+                    <div id="handle-mini"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="3"><path d="M9 18l6-6-6-6"/></svg></div>
                 </div>
-                <button onclick="onSuccess()" id="regBtn" class="reg-btn">Complete Registration</button>
+                <button onclick="alert('Confirmed')" id="m-btn" class="reg-btn-mini">Register</button>
             </div>
         </div>
 
         <footer>
-            <div style="margin-bottom: 15px; font-weight: 600; color: #888;">oneworld@coesse.org</div>
+            <div style="margin-bottom: 10px;">oneworld@coesse.org</div>
             <div>© 2026 Coesse. All Rights Reserved.</div>
         </footer>
     </div>
 
     <script>
-        function toggleFold() {
-            const ui = document.getElementById('fold-ui');
-            const trigger = document.getElementById('trigger');
-            ui.classList.toggle('show');
-            trigger.classList.toggle('open');
-        }
+        // Math
+        let n1 = 5, n2 = 6; 
+        document.getElementById('m-math').innerText = `Human Logic: ${n1} + ${n2} =`;
 
-        let n1 = Math.floor(Math.random()*5)+4, n2 = Math.floor(Math.random()*5)+4;
-        let ans = n1 + n2;
-        document.getElementById('math-q').innerText = `Human Logic: ${n1} + ${n2} =`;
-
-        const handle = document.getElementById('handle'), track = document.getElementById('track'), regBtn = document.getElementById('regBtn');
-        let verified = false;
-
-        const moveEvent = (e) => {
-            let x = (e.clientX || e.touches[0].clientX) - handle.startX;
-            if (x >= 0 && x <= (track.offsetWidth - 58)) handle.style.transform = `translateX(${x}px)`;
-            if (x >= (track.offsetWidth - 62)) {
-                verified = true; handle.style.background = '#34c759';
-                regBtn.classList.add('active');
-            }
-        };
+        // Mini Slider
+        const handle = document.getElementById('handle-mini'), track = document.getElementById('m-track'), btn = document.getElementById('m-btn');
+        let done = false;
 
         handle.ontouchstart = handle.onmousedown = (e) => {
-            handle.startX = (e.clientX || e.touches[0].clientX);
-            document.onmousemove = document.ontouchmove = moveEvent;
+            let startX = (e.clientX || e.touches[0].clientX);
+            document.onmousemove = document.ontouchmove = (ev) => {
+                let x = (ev.clientX || ev.touches[0].clientX) - startX;
+                if (x >= 0 && x <= (track.offsetWidth - 46)) handle.style.transform = `translateX(${x}px)`;
+                if (x >= (track.offsetWidth - 50)) {
+                    done = true; handle.style.background = '#34c759';
+                    btn.classList.add('active');
+                }
+            };
+            document.onmouseup = document.ontouchend = () => document.onmousemove = document.ontouchmove = null;
         };
-
-        document.onmouseup = document.ontouchend = () => {
-            document.onmousemove = document.ontouchmove = null;
-            if (!verified) handle.style.transform = 'translateX(0)';
-        };
-
-        function onSuccess() {
-            if(parseInt(document.getElementById('math-ans').value) !== ans) return alert("Verification failed.");
-            alert("Success. Welcome to Coesse.");
-            location.reload();
-        }
     </script>
 </body>
 </html>
