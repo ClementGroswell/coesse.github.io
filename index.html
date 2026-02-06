@@ -4,18 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Coesse | Home</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-    <div class="aurora-bg"></div>
+    <div class="aurora-container"></div>
 
-    <nav>
-        <div class="nav-container">
+    <nav class="navbar">
+        <div class="nav-content">
             <div class="brand">COESSE</div>
             
-            <ul class="nav-links">
+            <ul class="nav-links desktop-only">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="projects.html">Projects</a></li>
@@ -23,7 +23,7 @@
                 <li><a href="join.html" class="join-btn">Join Us</a></li>
             </ul>
 
-            <div class="menu-toggle" id="mobile-menu-btn">
+            <div class="hamburger" id="hamburger">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -31,28 +31,28 @@
         </div>
     </nav>
 
-    <div class="mobile-nav" id="mobile-nav">
+    <div class="mobile-drawer" id="mobile-drawer">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
         <a href="projects.html">Projects</a>
         <a href="contact.html">Contact</a>
-        <a href="join.html" class="mobile-join-btn">Join Us</a>
+        <a href="join.html" class="drawer-join-btn">Join Us</a>
     </div>
 
-    <main>
+    <main class="hero">
         <div class="glass-card">
             <h1>Welcome to Coesse</h1>
-            <p>Redefining structure through the chaos.<br>Not OXYN, but evolution.</p>
-            <div class="cta-group">
-                <a href="projects.html" class="cta-button">Explore Projects</a>
+            <p>Redefining structure through the chaos. <br>Not OXYN, but evolution.</p>
+            <div class="cta-area">
+                <a href="projects.html" class="main-button">Explore Projects</a>
             </div>
         </div>
     </main>
 
     <footer>
-        <div class="footer-inner">
+        <div class="footer-wrap">
             <p class="copyright">© 2026 Coesse. All Rights Reserved. 版权所有。</p>
-            <p class="contact-email">如果您有任何问题请联系我们的官方邮箱: <a href="mailto:oneworld@coesse.org">oneworld@coesse.org</a></p>
+            <p class="email-info">如果您有任何问题请联系我们的官方邮箱: <a href="mailto:oneworld@coesse.org">oneworld@coesse.org</a></p>
         </div>
     </footer>
 
