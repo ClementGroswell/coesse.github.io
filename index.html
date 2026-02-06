@@ -2,48 +2,57 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Coesse | Home</title>
-    <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
+    <div class="aurora-bg"></div>
+
     <nav>
-        <div class="brand">COESSE</div>
-        <div class="nav-links desktop-menu">
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="projects.html">Projects</a>
-            <a href="contact.html">Contact</a>
-            <a href="join.html" class="btn-primary">Join Us</a>
-        </div>
-        <div class="hamburger" id="hamburger-btn">
-            <span></span><span></span><span></span>
+        <div class="nav-container">
+            <div class="brand">COESSE</div>
+            
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="join.html" class="join-btn">Join Us</a></li>
+            </ul>
+
+            <div class="menu-toggle" id="mobile-menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
     </nav>
 
-    <div class="mobile-overlay" id="mobile-menu">
+    <div class="mobile-nav" id="mobile-nav">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
         <a href="projects.html">Projects</a>
         <a href="contact.html">Contact</a>
-        <a href="join.html" class="btn-primary">Join Us</a>
+        <a href="join.html" class="mobile-join-btn">Join Us</a>
     </div>
 
-    <main class="hero-section">
+    <main>
         <div class="glass-card">
             <h1>Welcome to Coesse</h1>
-            <p>Redefining structure through the chaos. Not OXYN, but evolution.</p>
-            <div class="actions">
-                <a href="projects.html" class="btn-secondary">Explore Projects</a>
+            <p>Redefining structure through the chaos.<br>Not OXYN, but evolution.</p>
+            <div class="cta-group">
+                <a href="projects.html" class="cta-button">Explore Projects</a>
             </div>
         </div>
     </main>
 
     <footer>
-        <div class="footer-content">
-            <p>© 2026 Coesse. All Rights Reserved. 版权所有。</p>
-            <p>如有任何疑问，请联系官方邮箱：<a href="mailto:oneworld@coesse.org">oneworld@coesse.org</a></p>
+        <div class="footer-inner">
+            <p class="copyright">© 2026 Coesse. All Rights Reserved. 版权所有。</p>
+            <p class="contact-email">如果您有任何问题请联系我们的官方邮箱: <a href="mailto:oneworld@coesse.org">oneworld@coesse.org</a></p>
         </div>
     </footer>
 
