@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Join Coesse</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/style.css">
+
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-auth-compat.js"></script>
+<script src="js/main.js"></script>
+</head>
+<body>
+
+<div class="background"></div>
+<div class="overlay"></div>
+
+<nav>
+  <strong>Coesse</strong>
+  <div>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="projects.html">Projects</a>
+    <a href="join.html">Join</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</nav>
+
+<div class="section">
+  <div class="card">
+    <h2>Become a Volunteer</h2>
+    <details>
+      <summary>Open Registration</summary>
+      <input id="email" placeholder="Email">
+      <input id="password" type="password" placeholder="Password">
+      <button onclick="register()">Register</button>
+      <hr>
+      <input id="resetEmail" placeholder="Email for password reset">
+      <button onclick="resetPassword()">Reset Password</button>
+    </details>
+  </div>
+</div>
+
+<footer>© 2026 Coesse Organization</footer>
+
+</body>
+</html>
