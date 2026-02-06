@@ -7,23 +7,9 @@
 
 <link rel="stylesheet" href="css/style.css">
 
-<!-- Firebase SDK -->
+<!-- 可选 Firebase SDK -->
 <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore-compat.js"></script>
-
-<script>
-  const firebaseConfig = {
-    apiKey: "你的APIKEY",
-    authDomain: "你的项目.firebaseapp.com",
-    projectId: "你的项目ID",
-    storageBucket: "你的项目.appspot.com",
-    messagingSenderId: "xxx",
-    appId: "xxx"
-  };
-  firebase.initializeApp(firebaseConfig);
-</script>
-
 <script src="js/main.js"></script>
 </head>
 <body>
@@ -31,6 +17,7 @@
 <div class="background"></div>
 <div class="overlay"></div>
 
+<!-- 导航 -->
 <nav>
   <strong>Coesse</strong>
   <div>
@@ -42,10 +29,12 @@
   </div>
 </nav>
 
+<!-- 首页内容 -->
 <div class="section">
-  <div class="card">
-    <h1>One World. One Breath</h1>
-    <p>Mobilizing global volunteers to protect the planet and human dignity.</p>
+  <div class="card" style="text-align:center;">
+    <h1>Coesse</h1>
+    <p>One World. One Breath</p>
+    <p>Protecting the planet · Defending human rights</p>
   </div>
 
   <div class="card">
@@ -55,11 +44,31 @@
 
   <div class="card">
     <h2>Our Vision</h2>
-    <p>A world where humanity and nature live in harmony.</p>
+    <p>A world where humanity and nature coexist in harmony, where every life is respected, and collective action shapes a just and sustainable future.</p>
   </div>
+
+  <!-- 折叠注册表单 -->
+  <div class="card">
+    <h2>Join as Volunteer</h2>
+    <details>
+      <summary>Open Registration</summary>
+      <input id="email" placeholder="Email">
+      <input id="password" type="password" placeholder="Password">
+      <button onclick="register()">Register</button>
+      <hr>
+      <input id="resetEmail" placeholder="Email for password reset">
+      <button onclick="resetPassword()">Reset Password</button>
+    </details>
+  </div>
+
 </div>
 
-<footer>© 2026 Coesse Organization</footer>
+<!-- 页脚 -->
+<footer>
+  <p>Official Contact: oneworld@coesse.org</p>
+  <p>Coesse — One World. One Breath</p>
+  <p>© 2026 Coesse Organization</p>
+</footer>
 
 </body>
 </html>
