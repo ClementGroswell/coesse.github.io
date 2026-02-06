@@ -1,32 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coesse | Home</title>
     <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-
     <nav>
         <div class="brand">COESSE</div>
-        <div class="nav-links">
+        <div class="nav-links desktop-menu">
             <a href="index.html">Home</a>
             <a href="about.html">About</a>
             <a href="projects.html">Projects</a>
             <a href="contact.html">Contact</a>
             <a href="join.html" class="btn-primary">Join Us</a>
         </div>
+        <div class="hamburger" id="hamburger-btn">
+            <span></span><span></span><span></span>
+        </div>
     </nav>
 
-    <main style="flex: 1; display: flex; align-items: center; justify-content: center;">
-        <div class="glass-card" style="text-align: center; max-width: 600px;">
+    <div class="mobile-overlay" id="mobile-menu">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="projects.html">Projects</a>
+        <a href="contact.html">Contact</a>
+        <a href="join.html" class="btn-primary">Join Us</a>
+    </div>
+
+    <main class="hero-section">
+        <div class="glass-card">
             <h1>Welcome to Coesse</h1>
             <p>Redefining structure through the chaos. Not OXYN, but evolution.</p>
-            <br>
-            <a href="projects.html" class="btn-primary">Explore Projects</a>
+            <div class="actions">
+                <a href="projects.html" class="btn-secondary">Explore Projects</a>
+            </div>
         </div>
     </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>© 2026 Coesse. All Rights Reserved. 版权所有。</p>
+            <p>如有任何疑问，请联系官方邮箱：<a href="mailto:oneworld@coesse.org">oneworld@coesse.org</a></p>
+        </div>
+    </footer>
 
     <script src="js/main.js" type="module"></script>
 </body>
