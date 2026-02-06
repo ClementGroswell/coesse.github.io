@@ -10,7 +10,7 @@
             --apple-bg: #000;
             --apple-text: #f5f5f7;
             --apple-sec: #86868b;
-            --glass: rgba(10, 10, 10, 0.75);
+            --glass: rgba(15, 15, 15, 0.8);
             --border: rgba(255, 255, 255, 0.15);
         }
 
@@ -21,47 +21,48 @@
             -webkit-font-smoothing: antialiased; overflow-x: hidden;
         }
 
-        /* Hero Background - Referencing your bg.jpg */
+        /* 极光背景：引用你上传的 bg.jpg */
         .hero-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.95) 100%),
+            background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.95) 100%),
                         url('bg.jpg');
             background-size: cover; background-position: center; z-index: -1;
         }
 
         .main-wrapper {
-            max-width: 800px; margin: 0 auto; padding: 100px 24px;
+            max-width: 800px; margin: 0 auto; padding: 120px 24px;
             display: flex; flex-direction: column; align-items: center;
         }
 
-        /* Header Section */
-        header { text-align: center; margin-bottom: 70px; width: 100%; }
-        h1 { font-size: clamp(3rem, 12vw, 5.5rem); font-weight: 100; letter-spacing: 0.1em; margin: 0; }
+        /* 标题：极致留白 */
+        header { text-align: center; margin-bottom: 80px; width: 100%; }
+        h1 { font-size: clamp(3rem, 15vw, 5.5rem); font-weight: 100; letter-spacing: 0.12em; margin: 0; }
         .tagline { 
-            font-size: clamp(0.7rem, 3.5vw, 1.1rem); font-weight: 400; letter-spacing: 0.5em; 
+            font-size: clamp(0.7rem, 4vw, 1.1rem); font-weight: 400; letter-spacing: 0.5em; 
             color: var(--apple-sec); text-transform: uppercase; margin-top: 15px;
             white-space: nowrap; width: 100%; text-align: center;
         }
 
-        /* Content Cards */
+        /* 内容卡片：高权重对比 */
         .card {
             background: var(--glass); backdrop-filter: blur(50px); -webkit-backdrop-filter: blur(50px);
             border: 1px solid var(--border); border-radius: 32px;
             padding: 40px; margin-bottom: 24px; width: 100%; max-width: 600px;
-            box-sizing: border-box; animation: fadeInUp 1s ease-out;
+            box-sizing: border-box; animation: fadeInUp 1s ease-out forwards;
         }
         .label { 
-            font-size: 0.8rem; font-weight: 900; color: #fff; 
-            text-transform: uppercase; letter-spacing: 0.2em; 
+            font-size: 0.85rem; font-weight: 900; color: #fff; 
+            text-transform: uppercase; letter-spacing: 0.25em; 
             display: block; margin-bottom: 18px; 
         }
         .card-p { font-size: 1.05rem; line-height: 1.8; font-weight: 300; margin: 0; color: rgba(255,255,255,0.9); }
+        /* 强化加粗美感 */
         .card-p b { font-weight: 800; color: #fff; }
 
-        /* Folded Registration */
+        /* 注册区域：精简尺寸 */
         .reg-container { width: 100%; max-width: 320px; margin-top: 30px; }
         .reg-trigger {
-            width: 100%; padding: 16px; background: rgba(255,255,255,0.08); border-radius: 20px;
+            width: 100%; padding: 16px; background: rgba(255,255,255,0.1); border-radius: 20px;
             border: 1px solid var(--border); color: #fff; font-size: 0.95rem; font-weight: 800;
             cursor: pointer; text-align: center; transition: 0.3s;
         }
@@ -70,15 +71,16 @@
             max-height: 0; overflow: hidden; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             background: rgba(0, 0, 0, 0.6); border-radius: 0 0 20px 20px; margin-top: -10px;
         }
-        .reg-panel.open { max-height: 480px; padding: 30px; border: 1px solid var(--border); border-top: none; }
+        .reg-panel.open { max-height: 500px; padding: 30px; border: 1px solid var(--border); border-top: none; }
 
         .input-mini {
             width: 100%; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.1);
             border-radius: 14px; padding: 15px; color: #fff; font-size: 0.9rem; margin-bottom: 15px; box-sizing: border-box; outline: none;
         }
 
+        /* 滑块验证 */
         .track-mini { width: 100%; height: 48px; background: rgba(255,255,255,0.05); border-radius: 24px; position: relative; margin: 20px 0; border: 1px solid var(--border); }
-        #handle { width: 44px; height: 42px; background: #fff; border-radius: 21px; position: absolute; left: 3px; top: 2px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        #handle { width: 44px; height: 42px; background: #fff; border-radius: 21px; position: absolute; left: 3px; top: 2px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
 
         .btn-confirm {
             width: 100%; padding: 16px; border-radius: 999px; border: none;
@@ -87,12 +89,12 @@
         }
         .btn-confirm.ready { opacity: 1; pointer-events: auto; }
 
-        /* English Footer */
+        /* 页脚：纯英文版权声明 */
         footer {
-            width: 100%; max-width: 650px; margin-top: 120px; padding: 50px 0; text-align: center;
-            border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.85rem; line-height: 1.8; color: #666;
+            width: 100%; max-width: 650px; margin-top: 100px; padding: 60px 0; text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.85rem; line-height: 2; color: #555;
         }
-        .footer-mail { color: #888; font-weight: 700; display: block; margin-bottom: 10px; }
+        .footer-mail { color: #888; font-weight: 700; display: block; margin-bottom: 10px; text-decoration: none; }
 
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
     </style>
@@ -129,7 +131,7 @@
                 <input type="password" id="pw" class="input-mini" placeholder="Password">
                 
                 <div style="font-size: 0.9rem; color: #fff; margin-bottom: 10px; font-weight: 800;" id="math-q">...</div>
-                <input type="number" id="math-ans" class="input-mini" placeholder="Result" style="width: 110px;">
+                <input type="number" id="math-ans" class="input-mini" placeholder="Result" style="width: 100px;">
 
                 <div class="track-mini" id="track">
                     <div style="position:absolute; width:100%; text-align:center; line-height:48px; font-size:0.75rem; color:#666; pointer-events:none; font-weight:700;">Slide to Verify</div>
@@ -137,26 +139,27 @@
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="3.5"><path d="M9 18l6-6-6-6"/></svg>
                     </div>
                 </div>
-                <button onclick="alert('Confirmed locally.')" id="regBtn" class="btn-confirm">Complete Registration</button>
+                <button onclick="alert('Confirmed locally.')" id="regBtn" class="btn-confirm">Register Now</button>
             </div>
         </div>
 
         <footer>
-            <span class="footer-mail">If you have any questions or need assistance, please contact us at: oneworld@coesse.org</span>
+            <a href="mailto:oneworld@coesse.org" class="footer-mail">If you have any questions or need assistance, please contact us at: oneworld@coesse.org</a>
             <div>All content is protected by copyright © 2026 Coesse.org.</div>
         </footer>
     </div>
 
     <script>
+        // Logic Challenge
         let n1 = Math.floor(Math.random()*5)+4, n2 = Math.floor(Math.random()*5)+4;
         let ans = n1 + n2;
-        document.getElementById('math-q').innerText = `Logic Check: ${n1} + ${n2} = ?`;
+        document.getElementById('math-q').innerText = `Human Check: ${n1} + ${n2} = ?`;
 
         const handle = document.getElementById('handle'), track = document.getElementById('track'), regBtn = document.getElementById('regBtn');
         let done = false;
 
         const move = (e) => {
-            let x = (e.clientX || e.touches[0].clientX) - handle.startX;
+            let x = (e.clientX || (e.touches ? e.touches[0].clientX : 0)) - handle.startX;
             if (x >= 0 && x <= (track.offsetWidth - 52)) handle.style.transform = `translateX(${x}px)`;
             if (x >= (track.offsetWidth - 58)) {
                 done = true; handle.style.background = '#34c759';
@@ -165,7 +168,7 @@
         };
 
         handle.ontouchstart = handle.onmousedown = (e) => {
-            handle.startX = (e.clientX || e.touches[0].clientX);
+            handle.startX = (e.clientX || (e.touches ? e.touches[0].clientX : 0));
             document.onmousemove = document.ontouchmove = move;
         };
 
