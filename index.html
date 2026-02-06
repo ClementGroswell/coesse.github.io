@@ -1,194 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <title>Coesse — One World. One Breath</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-html,body{
-  margin:0;
-  min-height:100%;
-  background:black;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI";
-  color:white;
-}
+<link rel="stylesheet" href="css/style.css">
 
-.bg{
-  position:fixed;
-  inset:0;
-  background:url('bg.jpg') center/cover no-repeat;
-  z-index:-2;
-}
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore-compat.js"></script>
 
-.bg::after{
-  content:'';
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,.45);
-  backdrop-filter:blur(10px);
-}
+<script>
+  const firebaseConfig = {
+    apiKey: "你的APIKEY",
+    authDomain: "你的项目.firebaseapp.com",
+    projectId: "你的项目ID",
+    storageBucket: "你的项目.appspot.com",
+    messagingSenderId: "xxx",
+    appId: "xxx"
+  };
+  firebase.initializeApp(firebaseConfig);
+</script>
 
-.hero{
-  min-height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  padding:60px;
-}
-
-.hero h1{
-  font-size:72px;
-  margin:0;
-}
-
-.hero p{
-  font-size:24px;
-  opacity:.85;
-}
-
-.section{
-  padding:120px 10%;
-}
-
-.card{
-  background:rgba(255,255,255,.06);
-  backdrop-filter:blur(20px);
-  border-radius:32px;
-  padding:60px;
-  box-shadow:0 30px 80px rgba(0,0,0,.6);
-  margin-bottom:90px;
-}
-
-.card h2{
-  margin-top:0;
-  font-size:36px;
-}
-
-.card p{
-  font-size:22px;
-  opacity:.85;
-  line-height:1.6;
-}
-
-details summary{
-  cursor:pointer;
-  font-size:22px;
-  margin-top:20px;
-}
-
-input{
-  width:100%;
-  max-width:400px;
-  padding:14px;
-  border-radius:14px;
-  border:none;
-  margin:10px 0;
-  font-size:16px;
-}
-
-button{
-  padding:14px 30px;
-  border-radius:18px;
-  border:none;
-  font-size:16px;
-  cursor:pointer;
-}
-
-footer{
-  padding:90px 10%;
-  text-align:center;
-  opacity:.7;
-  border-top:1px solid rgba(255,255,255,.15);
-}
-
-@media(max-width:768px){
-  .hero h1{font-size:48px}
-  .section{padding:80px 8%}
-  .card{padding:40px}
-}
-</style>
+<script src="js/main.js"></script>
 </head>
-
 <body>
 
-<div class="bg"></div>
+<div class="background"></div>
+<div class="overlay"></div>
 
-<!-- HERO -->
-<div class="hero">
+<nav>
+  <strong>Coesse</strong>
   <div>
-    <h1>Coesse</h1>
-    <p>One World. One Breath</p>
-    <p>Protecting the planet · Defending human rights</p>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="projects.html">Projects</a>
+    <a href="join.html">Join</a>
+    <a href="contact.html">Contact</a>
   </div>
-</div>
+</nav>
 
-<!-- CONTENT -->
 <div class="section">
+  <div class="card">
+    <h1>One World. One Breath</h1>
+    <p>Mobilizing global volunteers to protect the planet and human dignity.</p>
+  </div>
 
   <div class="card">
     <h2>Our Mission</h2>
-    <p>
-      To mobilize global volunteers to protect the planet, defend human rights,
-      and foster a culture of life coexistence for present and future generations.
-    </p>
+    <p>To mobilize global volunteers to protect the planet, defend human rights, and foster coexistence.</p>
   </div>
 
   <div class="card">
     <h2>Our Vision</h2>
-    <p>
-      A world where humanity and nature coexist in harmony, where every life is respected,
-      and where collective action shapes a just and sustainable future.
-    </p>
+    <p>A world where humanity and nature live in harmony.</p>
   </div>
-
-  <div class="card">
-    <h2>Join as Volunteer</h2>
-
-    <details>
-      <summary>Open Registration</summary>
-
-      <div style="margin-top:25px">
-        <input id="email" placeholder="Email">
-        <input id="password" type="password" placeholder="Password">
-        <button onclick="register()">Register</button>
-      </div>
-    </details>
-
-  </div>
-
 </div>
 
-<!-- FOOTER -->
-<footer>
-  <p>Coesse — One World. One Breath</p>
-  <p>Contact: oneworld@coesse.org</p>
-  <p>© 2026 Coesse Organization</p>
-</footer>
-
-<script>
-async function register(){
-  if(!email.value || !password.value){
-    alert("Please fill in all fields");
-    return;
-  }
-
-  try{
-    await fetch("https://你的后端服务器/api/register",{
-      method:"POST",
-      headers:{ "Content-Type":"application/json"},
-      body:JSON.stringify({
-        email:email.value,
-        password:password.value
-      })
-    });
-    alert("Registration successful — check your email to verify!");
-  }catch{
-    alert("Server not connected yet");
-  }
-}
-</script>
+<footer>© 2026 Coesse Organization</footer>
 
 </body>
 </html>
