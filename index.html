@@ -1,124 +1,160 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coesse | One World. One Breath.</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400&display=swap" rel="stylesheet">
+    <title>Coesse 科塞斯 | 同一个世界，同一个呼吸</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         :root {
             --text-color: #ffffff;
-            --overlay-color: rgba(0, 0, 0, 0.45);
+            --glass-bg: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.15);
         }
         
         body, html {
             margin: 0; padding: 0; width: 100%; height: 100%;
-            font-family: 'Inter', sans-serif; color: var(--text-color);
+            font-family: 'Inter', 'Noto Sans SC', sans-serif; color: var(--text-color);
             background-color: #000;
-            /* Remote 4K Background - Bypass Upload Issues */
-            background: linear-gradient(var(--overlay-color), var(--overlay-color)), 
-                        url('https://images.pexels.com/photos/6321144/pexels-photo-6321144.jpeg?auto=compress&cs=tinysrgb&w=2560') no-repeat center center fixed;
+            /* 远程高清极光背景 - 无需上传 */
+            background: url('https://images.pexels.com/photos/6321144/pexels-photo-6321144.jpeg?auto=compress&cs=tinysrgb&w=2560') no-repeat center center fixed;
             background-size: cover;
-            display: flex; justify-content: center; align-items: center; overflow: hidden;
+            display: flex; justify-content: center; align-items: center;
+        }
+
+        /* 覆盖层，增加背景深邃感 */
+        .overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.5); z-index: 0;
         }
 
         .container {
-            text-align: center; padding: 50px 40px;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            max-width: 650px; width: 85%;
-            animation: fadeIn 2s ease-out;
+            position: relative; z-index: 1;
+            text-align: center; padding: 60px 40px;
+            /* 升级版毛玻璃效果 */
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            max-width: 700px; width: 85%;
+            border-radius: 4px;
+            animation: fadeIn 1.5s ease-out;
         }
 
-        h1 { font-size: clamp(2.5rem, 8vw, 5rem); letter-spacing: 0.8rem; margin: 0; font-weight: 200; text-transform: uppercase; }
-        .slogan { font-size: clamp(0.9rem, 2vw, 1.5rem); letter-spacing: 0.5rem; margin-top: 15px; text-transform: uppercase; color: rgba(255,255,255,0.7); }
+        h1 {
+            font-size: clamp(2.8rem, 8vw, 4.5rem);
+            letter-spacing: 0.8rem; margin: 0; font-weight: 300;
+            text-transform: uppercase; text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        .slogan {
+            font-size: clamp(1rem, 3vw, 1.4rem);
+            letter-spacing: 0.6rem; margin-top: 20px; font-weight: 300;
+            color: rgba(255,255,255,0.85);
+        }
 
-        .manifesto { margin-top: 35px; line-height: 1.8; font-size: 1.05rem; font-weight: 300; opacity: 0.9; }
+        /* 核心宣言区域 */
+        .manifesto-box {
+            margin-top: 50px;
+            padding: 30px;
+            border-top: 1px solid rgba(255,255,255,0.15);
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+            text-align: left;
+        }
+
+        .manifesto-title {
+            font-size: 1.1rem; font-weight: 500; letter-spacing: 2px; margin-bottom: 20px; color: #fff;
+        }
+
+        .manifesto-text {
+            line-height: 2; font-size: 1.05rem; font-weight: 300; color: rgba(255,255,255,0.9);
+            text-align: justify;
+        }
         
         .requirements {
-            margin: 25px auto; padding: 15px; border-top: 1px solid rgba(255,255,255,0.1);
-            font-size: 0.85rem; color: #aaa; font-style: italic;
+            margin-top: 30px; font-size: 0.9rem; color: rgba(255,255,255,0.6);
         }
 
-        /* Verification Box */
+        /* 验证框优化 */
         .verification-box {
-            background: rgba(0,0,0,0.3);
-            padding: 20px;
-            border-radius: 4px;
-            margin-top: 20px;
-            display: inline-block;
+            background: rgba(0,0,0,0.2); padding: 25px 35px;
+            border-radius: 4px; margin-top: 35px; display: inline-block;
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
-        .captcha-label {
-            display: block; font-size: 0.75rem; margin-bottom: 10px;
-            letter-spacing: 1px; color: #888; text-transform: uppercase;
-        }
-
-        #math-question { font-weight: 400; font-size: 1.4rem; color: #fff; margin-bottom: 15px; letter-spacing: 2px; }
+        #math-question { font-weight: 400; font-size: 1.5rem; margin: 20px 0; letter-spacing: 3px; }
 
         #captcha-input {
-            background: transparent; border: 1px solid rgba(255,255,255,0.3);
-            color: #fff; padding: 10px; width: 80px; text-align: center;
-            font-size: 1.1rem; margin-bottom: 20px; outline: none;
+            background: transparent; border: 1px solid rgba(255,255,255,0.4);
+            color: #fff; padding: 12px; width: 100px; text-align: center;
+            font-size: 1.2rem; margin-bottom: 25px; outline: none; transition: border 0.3s;
         }
+        #captcha-input:focus { border-color: #fff; }
 
         .cta-button {
             display: block; color: #fff; text-decoration: none; border: 1px solid #fff;
-            padding: 14px 40px; font-size: 0.85rem; letter-spacing: 2px;
-            text-transform: uppercase; transition: all 0.4s ease; cursor: pointer; background: none;
+            padding: 15px 50px; font-size: 0.9rem; letter-spacing: 4px;
+            text-transform: uppercase; transition: all 0.4s ease; cursor: pointer; background: transparent;
             margin: 0 auto;
         }
-
         .cta-button:hover { background: #fff; color: #000; }
 
+        /* 页脚修复 - 手机端自动换行 */
         footer {
-            position: absolute; bottom: 30px; width: 100%; display: flex;
-            justify-content: space-between; padding: 0 50px; box-sizing: border-box;
-            font-size: 0.7rem; color: rgba(255, 255, 255, 0.3);
+            position: absolute; bottom: 20px; width: 100%; z-index: 2;
+            display: flex; justify-content: space-between; padding: 0 40px; box-sizing: border-box;
+            font-size: 0.75rem; color: rgba(255, 255, 255, 0.4); letter-spacing: 1px;
         }
-        footer a { color: inherit; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        footer a { color: inherit; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.2); }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        
         @media (max-width: 600px) {
-            footer { flex-direction: column; align-items: center; gap: 10px; bottom: 15px; }
+            .container { padding: 40px 25px; width: 90%; }
+            h1 { letter-spacing: 0.4rem; }
+            .slogan { letter-spacing: 0.3rem; }
+            /* 手机端页脚垂直排列，解决挤压问题 */
+            footer { flex-direction: column; align-items: center; gap: 12px; bottom: 15px; padding: 0; }
+            .manifesto-text { text-align: left; }
         }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
+    <div class="overlay"></div>
+
     <div class="container">
-        <h1>COESSE</h1>
-        <div class="slogan">One World. One Breath.</div>
+        <h1>科塞斯</h1>
+        <div class="slogan">同一个世界，同一个呼吸。</div>
         
-        <div class="manifesto">
-            The connection between the individual and the world<br>
-            is the spark that eventually reshapes it.
+        <div class="manifesto-box">
+            <div class="manifesto-title">我们的愿景 / OUR VISION</div>
+            <div class="manifesto-text">
+                在这个被算法和噪音裹挟的时代，科塞斯（Coesse）是为主权个体保留的一片净土。我们拒绝将人视为数据点。我们坚信，唯有觉醒个体之间真实的联结，才是重塑共同命运的星火。
+            </div>
         </div>
 
         <div class="requirements">
-            Please use a <strong>permanent personal or corporate email</strong>.<br>
-            Verification required to bypass automated scripts.
+            * 仅接受带有诚意的永久个人或企业邮箱。
         </div>
 
         <div class="verification-box">
-            <span class="captcha-label">Human Logic Challenge</span>
+            <div style="font-size: 0.8rem; letter-spacing: 2px; opacity: 0.7;">人机逻辑验证</div>
             <div id="math-question">...</div>
             <input type="number" id="captcha-input" placeholder="?">
-            <button onclick="checkAndConnect()" class="cta-button">Connect with us</button>
+            <button onclick="checkAndConnect()" class="cta-button">建立联结</button>
         </div>
     </div>
 
     <footer>
-        <div class="left">Initiated by MrClement | © 2026 Coesse</div>
-        <div class="right">Photo by <a href="https://www.pexels.com/@therato-19413204/" target="_blank">Therato</a></div>
+        <div class="left">发起人: MrClement | © 2026 Coesse</div>
+        <div class="right">背景摄影: <a href="https://www.pexels.com/@therato-19413204/" target="_blank">Therato</a></div>
     </footer>
 
     <script>
-        // Internal Logic Verification - No External Dependencies
-        let num1 = Math.floor(Math.random() * 10) + 2;
-        let num2 = Math.floor(Math.random() * 10) + 2;
+        // 内部逻辑验证 - 无第三方依赖
+        let num1 = Math.floor(Math.random() * 9) + 2;
+        let num2 = Math.floor(Math.random() * 9) + 2;
         let correctAnswer = num1 + num2;
 
         document.getElementById('math-question').innerText = `${num1} + ${num2} =`;
@@ -127,21 +163,22 @@
             const userAnswer = parseInt(document.getElementById('captcha-input').value);
             
             if (userAnswer !== correctAnswer) {
-                alert("Incorrect. Prove your humanity.");
-                num1 = Math.floor(Math.random() * 10) + 2;
-                num2 = Math.floor(Math.random() * 10) + 2;
+                alert("验证失败。请证明你不是冷冰冰的机器。");
+                // 刷新题目
+                num1 = Math.floor(Math.random() * 9) + 2;
+                num2 = Math.floor(Math.random() * 9) + 2;
                 correctAnswer = num1 + num2;
                 document.getElementById('math-question').innerText = `${num1} + ${num2} =`;
                 document.getElementById('captcha-input').value = "";
                 return;
             }
 
-            // Success Transition
-            const subject = encodeURIComponent("Coesse Connection Request");
+            // 验证成功，跳转邮件
+            const subject = encodeURIComponent("科塞斯(Coesse) 联结申请");
             const body = encodeURIComponent(
-                "I confirm this is my permanent personal/corporate email address.\n\n" +
-                "My Alias: \n" +
-                "My Story/Intent: "
+                "我确认使用永久个人/企业邮箱进行联结。\n\n" +
+                "我的代号/称呼: \n" +
+                "我的来意与故事: "
             );
             
             window.location.href = `mailto:oneworld@coesse.org?subject=${subject}&body=${body}`;
