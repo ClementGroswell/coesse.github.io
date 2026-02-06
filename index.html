@@ -111,7 +111,7 @@
       padding: 140px 20px 120px;
     }
 
-    /* 首页英雄区 */
+    /* 首页英雄区（去掉按钮） */
     .hero {
       text-align: center;
       margin-bottom: 100px;
@@ -136,7 +136,6 @@
       font-size: 22px;
       font-weight: 300;
       opacity: 0.9;
-      margin-bottom: 40px;
     }
 
     .btn {
@@ -382,8 +381,8 @@
 </head>
 <body>
 
-<!-- 极光背景 -->
-<img src="bg.jpg" class="hero-bg" alt="Aurora Background">
+<!-- 极光背景（确保 bg.jpg 与 index.html 在同一目录） -->
+<img src="bg.jpg" class="hero-bg" alt="Aurora Background" onerror="this.style.display='none'">
 <div class="overlay"></div>
 
 <!-- 导航栏（汉堡按钮） -->
@@ -404,7 +403,7 @@
     <h1>Coesse</h1>
     <div class="tagline">A global volunteer organization for planetary protection and human rights</div>
     <div class="slogan">One World. One Breath</div>
-    <a class="btn" onclick="openModal('registerModal')">Become a Volunteer</a>
+    <!-- 这里的按钮已删除 -->
   </section>
 
   <section id="about" class="section">
