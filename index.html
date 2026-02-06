@@ -43,7 +43,7 @@
       z-index: -1;
     }
 
-    /* 导航栏 */
+    /* 导航栏（苹果风 + 汉堡按钮） */
     nav {
       position: fixed;
       top: 0;
@@ -63,15 +63,44 @@
       letter-spacing: 1px;
     }
 
-    .nav-links a {
+    /* 汉堡按钮 */
+    .menu-toggle {
+      display: block;
+      font-size: 24px;
       color: #fff;
-      text-decoration: none;
-      margin-left: 30px;
-      font-size: 16px;
-      transition: 0.3s;
+      cursor: pointer;
+      user-select: none;
     }
 
-    .nav-links a:hover {
+    /* 移动端菜单 */
+    .nav-menu {
+      position: fixed;
+      top: 70px;
+      right: 5%;
+      background: rgba(0,0,0,0.85);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 20px;
+      min-width: 200px;
+      display: none;
+      flex-direction: column;
+      gap: 16px;
+      backdrop-filter: blur(12px);
+    }
+
+    .nav-menu.show {
+      display: flex;
+    }
+
+    .nav-menu a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 16px;
+      padding: 8px 0;
+      transition: 0.2s;
+    }
+
+    .nav-menu a:hover {
       opacity: 0.7;
     }
 
@@ -94,6 +123,13 @@
       font-weight: 700;
       margin-bottom: 16px;
       line-height: 1.1;
+    }
+
+    .hero .tagline {
+      font-size: 18px;
+      font-weight: 300;
+      opacity: 0.9;
+      margin-bottom: 12px;
     }
 
     .hero .slogan {
@@ -341,36 +377,41 @@
     @media (max-width: 768px) {
       .hero h1 { font-size: 36px; }
       .mission-vision { grid-template-columns: 1fr; }
-      .nav-links a { margin-left: 16px; font-size: 14px; }
     }
   </style>
 </head>
 <body>
 
+<!-- 极光背景 -->
 <img src="bg.jpg" class="hero-bg" alt="Aurora Background">
 <div class="overlay"></div>
 
-<!-- 导航 -->
+<!-- 导航栏（汉堡按钮） -->
 <nav>
   <div class="logo">Coesse</div>
-  <div class="nav-links">
-    <a href="#about">About Us</a>
-    <a href="#mission">Mission & Vision</a>
-    <a href="#volunteer">Volunteer</a>
-    <a onclick="openModal('loginModal')">Sign In</a>
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+  <div class="nav-menu" id="navMenu">
+    <a href="#about" onclick="closeMenu()">About Us</a>
+    <a href="#mission" onclick="closeMenu()">Mission & Vision</a>
+    <a href="#volunteer" onclick="closeMenu()">Volunteer</a>
+    <a onclick="openModal('loginModal'); closeMenu()">Sign In</a>
   </div>
 </nav>
 
-<!-- 主体 -->
+<!-- 主体内容 -->
 <div class="container">
   <section class="hero">
     <h1>Coesse</h1>
+    <div class="tagline">A global volunteer organization for planetary protection and human rights</div>
     <div class="slogan">One World. One Breath</div>
     <a class="btn" onclick="openModal('registerModal')">Become a Volunteer</a>
   </section>
 
   <section id="about" class="section">
     <h2>Our Birth</h2>
+    <p>
+      Coesse is a global volunteer organization dedicated to protecting the planet and defending human rights, driven by volunteers who join voluntarily to take action.
+    </p>
     <p>
       Coesse was founded because most environmental and human rights organizations often overlook the power of individuals worldwide, overemphasizing the official role of organizations and governments, while being trapped in huge, bloated systems that gradually lose the vitality and efficiency that international organizations should have.
     </p>
@@ -388,7 +429,7 @@
       </div>
       <div class="card">
         <h3>Vision</h3>
-        <p>A world where humanity and nature coexist in harmony, where every life is respected, and where collective action shapes a just and sustainable future.</p>
+        <p>A future world where humanity and the planet coexist harmoniously, a world where all life and species are respected and protected, and where sustainable development is achieved.</p>
       </div>
     </div>
   </section>
@@ -489,7 +530,7 @@
       </div>
     </div>
     <div class="copyright">
-      © 2026 Coesse International. All rights reserved.
+      &copy; 2026 Coesse.org. All rights reserved.
     </div>
   </div>
 </footer>
@@ -509,6 +550,16 @@
     for(let i=0;i<4;i++) code += chars[Math.floor(Math.random()*chars.length)];
     currentCaptcha = code;
     document.getElementById("captchaImg").innerText = code;
+  }
+
+  // 菜单控制
+  function toggleMenu() {
+    const menu = document.getElementById("navMenu");
+    menu.classList.toggle("show");
+  }
+
+  function closeMenu() {
+    document.getElementById("navMenu").classList.remove("show");
   }
 
   // 打开/关闭模态框
