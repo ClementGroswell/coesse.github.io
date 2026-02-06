@@ -1,154 +1,604 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coesse - One World. One Breath</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coesse — One World. One Breath</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    html, body {
+      width: 100%;
+      min-height: 100vh;
+      color: #fff;
+      background: #000;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    /* 极光全屏背景 */
+    .hero-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -2;
+      opacity: 0.9;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.45);
+      z-index: -1;
+    }
+
+    /* 导航栏 */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 20px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0,0,0,0.3);
+      backdrop-filter: blur(12px);
+      z-index: 999;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 30px;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      opacity: 0.7;
+    }
+
+    /* 主体容器 */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 140px 20px 120px;
+    }
+
+    /* 首页英雄区 */
+    .hero {
+      text-align: center;
+      margin-bottom: 100px;
+      animation: fadeIn 1.2s ease-in-out;
+    }
+
+    .hero h1 {
+      font-size: 52px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      line-height: 1.1;
+    }
+
+    .hero .slogan {
+      font-size: 22px;
+      font-weight: 300;
+      opacity: 0.9;
+      margin-bottom: 40px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 32px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 12px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 16px;
+      transition: 0.3s;
+      backdrop-filter: blur(6px);
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: rgba(255,255,255,0.15);
+      transform: translateY(-2px);
+    }
+
+    /* 内容区块 */
+    .section {
+      margin-bottom: 80px;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .section h2 {
+      font-size: 34px;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    .section p {
+      font-size: 18px;
+      line-height: 1.7;
+      opacity: 0.9;
+      max-width: 850px;
+      margin-bottom: 16px;
+    }
+
+    .mission-vision {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-top: 30px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 30px;
+      backdrop-filter: blur(10px);
+    }
+
+    .card h3 {
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    /* 模态框（登录注册） */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(4px);
+    }
+
+    .modal.show {
+      display: flex;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .modal-box {
+      background: rgba(20,20,20,0.9);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px;
+      width: 100%;
+      max-width: 440px;
+      padding: 40px 30px;
+      position: relative;
+      backdrop-filter: blur(12px);
+    }
+
+    .close {
+      position: absolute;
+      top: 20px; right: 20px;
+      font-size: 22px;
+      cursor: pointer;
+      opacity: 0.6;
+    }
+
+    .modal-box h2 {
+      margin-bottom: 24px;
+      text-align: center;
+      font-size: 26px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(0,0,0,0.2);
+      color: #fff;
+      font-size: 16px;
+      outline: none;
+    }
+
+    .form-group input:focus {
+      border-color: rgba(255,255,255,0.4);
+    }
+
+    .captcha-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    #captchaImg {
+      width: 120px;
+      height: 44px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      letter-spacing: 4px;
+      user-select: none;
+    }
+
+    .form-tip {
+      font-size: 13px;
+      color: #aaa;
+      margin-top: 4px;
+    }
+
+    .modal-box .btn {
+      width: 100%;
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .modal-bottom {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 14px;
+      opacity: 0.7;
+    }
+
+    .modal-bottom a {
+      color: #fff;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    /* 页脚 */
+    footer {
+      background: rgba(0,0,0,0.6);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 60px 5% 30px;
+      backdrop-filter: blur(10px);
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .footer-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-col {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .footer-col h4 {
+      font-size: 16px;
+      margin-bottom: 16px;
+      opacity: 0.9;
+    }
+
+    .footer-col a {
+      display: block;
+      color: #ccc;
+      text-decoration: none;
+      margin-bottom: 10px;
+      font-size: 14px;
+      transition: 0.2s;
+    }
+
+    .footer-col a:hover {
+      color: #fff;
+    }
+
+    .copyright {
+      text-align: center;
+      font-size: 13px;
+      opacity: 0.5;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 响应式 */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 36px; }
+      .mission-vision { grid-template-columns: 1fr; }
+      .nav-links a { margin-left: 16px; font-size: 14px; }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Coesse</h1>
-        <p class="tagline">One World. One Breath</p>
-        <nav>
-            <a href="#about">About Us</a>
-            <a href="#mission">Mission</a>
-            <a href="#register">Register</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </header>
 
-    <main>
-        <section id="hero">
-            <h2>Welcome to Coesse</h2>
-            <p>We are a global volunteer organization dedicated to protecting the Earth and human rights.</p>
-            <a class="cta-button" href="#register">Register Now</a>
-        </section>
+<img src="bg.jpg" class="hero-bg" alt="Aurora Background">
+<div class="overlay"></div>
 
-        <section id="about" class="section">
-            <h2>About Us</h2>
-            <p>Coesse is a global volunteer organization that emphasizes the connection between individuals and nature, striving to create a better future for generations to come.</p>
-        </section>
+<!-- 导航 -->
+<nav>
+  <div class="logo">Coesse</div>
+  <div class="nav-links">
+    <a href="#about">About Us</a>
+    <a href="#mission">Mission & Vision</a>
+    <a href="#volunteer">Volunteer</a>
+    <a onclick="openModal('loginModal')">Sign In</a>
+  </div>
+</nav>
 
-        <section id="mission" class="section">
-            <h2>Our Mission</h2>
-            <p>Mobilizing global volunteers to protect the planet and defend human rights for future generations.</p>
-        </section>
+<!-- 主体 -->
+<div class="container">
+  <section class="hero">
+    <h1>Coesse</h1>
+    <div class="slogan">One World. One Breath</div>
+    <a class="btn" onclick="openModal('registerModal')">Become a Volunteer</a>
+  </section>
 
-        <section id="contact" class="section">
-            <h2>Contact Us</h2>
-            <p>Email: <a href="mailto:oneworld@coesse.org">oneworld@coesse.org</a></p>
-        </section>
-    </main>
+  <section id="about" class="section">
+    <h2>Our Birth</h2>
+    <p>
+      Coesse was founded because most environmental and human rights organizations often overlook the power of individuals worldwide, overemphasizing the official role of organizations and governments, while being trapped in huge, bloated systems that gradually lose the vitality and efficiency that international organizations should have.
+    </p>
+    <p>
+      For this reason, Coesse has launched a brand-new approach that emphasizes the relationship between individuals, the world, and the planet. Starting from the ordinary: recycling a plastic bottle, respecting others in daily life, and keeping kindness in heart — all these are the beginning of changing human rights and protecting the Earth.
+    </p>
+  </section>
 
-    <footer>
-        <p>&copy; 2023 Coesse. All rights reserved.</p>
-    </footer>
+  <section id="mission" class="section">
+    <h2>Mission & Vision</h2>
+    <div class="mission-vision">
+      <div class="card">
+        <h3>Mission</h3>
+        <p>To mobilize global volunteers to protect the planet, defend human rights, and foster a culture of life coexistence for present and future generations.</p>
+      </div>
+      <div class="card">
+        <h3>Vision</h3>
+        <p>A world where humanity and nature coexist in harmony, where every life is respected, and where collective action shapes a just and sustainable future.</p>
+      </div>
+    </div>
+  </section>
 
-    <script src="script.js"></script>
+  <section id="volunteer" class="section">
+    <h2>Join Us</h2>
+    <p>Every individual action counts. Join our global volunteer community to protect the planet and defend human rights, starting from today.</p>
+    <div style="margin-top:20px;">
+      <a class="btn" onclick="openModal('registerModal')">Register as Volunteer</a>
+    </div>
+  </section>
+</div>
+
+<!-- ====================== 模态框 ====================== -->
+
+<!-- 登录 -->
+<div id="loginModal" class="modal">
+  <div class="modal-box">
+    <span class="close" onclick="closeAllModals()">&times;</span>
+    <h2>Sign In</h2>
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" id="loginEmail" placeholder="your@email.com">
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" id="loginPwd" placeholder="Your password">
+    </div>
+    <button class="btn" onclick="doLogin()">Sign In</button>
+    <div class="modal-bottom">
+      <a onclick="switchModal('loginModal','forgotModal')">Forgot password?</a><br>
+      Don't have an account? <a onclick="switchModal('loginModal','registerModal')">Register</a>
+    </div>
+  </div>
+</div>
+
+<!-- 注册 -->
+<div id="registerModal" class="modal">
+  <div class="modal-box">
+    <span class="close" onclick="closeAllModals()">&times;</span>
+    <h2>Volunteer Register</h2>
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" id="regEmail" placeholder="your@email.com">
+      <div class="form-tip">We do not accept temporary / disposable emails.</div>
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" id="regPwd" placeholder="At least 6 characters">
+    </div>
+    <div class="form-group">
+      <label>Human Verification</label>
+      <div class="captcha-row">
+        <div id="captchaImg">LOADING</div>
+        <input type="text" id="captchaInput" placeholder="Code" style="flex:1;">
+      </div>
+    </div>
+    <button class="btn" onclick="doRegister()">Register</button>
+    <div class="modal-bottom">
+      Already have an account? <a onclick="switchModal('registerModal','loginModal')">Sign In</a>
+    </div>
+  </div>
+</div>
+
+<!-- 找回密码 -->
+<div id="forgotModal" class="modal">
+  <div class="modal-box">
+    <span class="close" onclick="closeAllModals()">&times;</span>
+    <h2>Forgot Password</h2>
+    <div class="form-group">
+      <label>Your Email</label>
+      <input type="email" id="forgotEmail" placeholder="Registered email">
+    </div>
+    <button class="btn" onclick="doForgot()">Send Reset Link</button>
+    <div class="modal-bottom">
+      <a onclick="switchModal('forgotModal','loginModal')">Back to Sign In</a>
+    </div>
+  </div>
+</div>
+
+<!-- ====================== 页脚 ====================== -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-row">
+      <div class="footer-col">
+        <h4>Coesse</h4>
+        <a>One World. One Breath</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a>oneworld@coesse.org</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a>Privacy Policy</a>
+        <a>Terms of Service</a>
+        <a>Legal Information</a>
+      </div>
+    </div>
+    <div class="copyright">
+      © 2026 Coesse International. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+<script>
+  // 模态框控制
+  let currentCaptcha = "";
+  const disposableDomains = [
+    "tempmail.com","temp-mail.org","throwawaymail.com","10minutemail.com",
+    "mailinator.com","guerrillamail.com","yopmail.com","trashmail.com"
+  ];
+
+  // 生成验证码
+  function genCaptcha() {
+    const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+    let code = "";
+    for(let i=0;i<4;i++) code += chars[Math.floor(Math.random()*chars.length)];
+    currentCaptcha = code;
+    document.getElementById("captchaImg").innerText = code;
+  }
+
+  // 打开/关闭模态框
+  function openModal(id) {
+    closeAllModals();
+    document.getElementById(id).classList.add("show");
+    if(id === "registerModal") genCaptcha();
+  }
+
+  function closeAllModals() {
+    document.querySelectorAll(".modal").forEach(m => m.classList.remove("show"));
+  }
+
+  function switchModal(from, to) {
+    document.getElementById(from).classList.remove("show");
+    setTimeout(()=>openModal(to), 200);
+  }
+
+  // 检查一次性邮箱
+  function isDisposableEmail(email) {
+    const domain = email.split("@")[1]?.toLowerCase();
+    return disposableDomains.some(d => domain?.includes(d));
+  }
+
+  // 注册
+  function doRegister() {
+    const email = document.getElementById("regEmail").value.trim();
+    const pwd = document.getElementById("regPwd").value.trim();
+    const captcha = document.getElementById("captchaInput").value.trim().toUpperCase();
+
+    if(!email || !pwd || !captcha) {
+      alert("Please fill all fields.");
+      return;
+    }
+    if(pwd.length < 6) {
+      alert("Password at least 6 characters.");
+      return;
+    }
+    if(isDisposableEmail(email)) {
+      alert("Temporary / disposable emails are not allowed.");
+      return;
+    }
+    if(captcha !== currentCaptcha) {
+      alert("Verification code incorrect.");
+      genCaptcha();
+      return;
+    }
+
+    // 模拟注册成功（前端演示，后端需对接真实接口）
+    alert("Registration successful!\nPlease sign in with your email and password.");
+    localStorage.setItem("coesseUser", email);
+    closeAllModals();
+  }
+
+  // 登录
+  function doLogin() {
+    const email = document.getElementById("loginEmail").value.trim();
+    const pwd = document.getElementById("loginPwd").value.trim();
+    if(!email || !pwd) {
+      alert("Please fill email and password.");
+      return;
+    }
+    // 模拟登录
+    localStorage.setItem("coesseUser", email);
+    alert("Signed in successfully.");
+    closeAllModals();
+  }
+
+  // 注销
+  function doLogout() {
+    localStorage.removeItem("coesseUser");
+    alert("Signed out successfully.");
+  }
+
+  // 找回密码
+  function doForgot() {
+    const email = document.getElementById("forgotEmail").value.trim();
+    if(!email) {
+      alert("Please enter your email.");
+      return;
+    }
+    alert("A reset link has been sent to your email (demo).");
+    closeAllModals();
+  }
+
+  // 初始化
+  window.onload = function() {
+    genCaptcha();
+  }
+</script>
+
 </body>
 </html>
-```
-
-#### `style.css`
-```css
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    background-image: url('bg.jpg'); /* Replace with your aurora background image */
-    background-size: cover;
-    background-position: center;
-    color: white;
-    line-height: 1.6;
-}
-
-header {
-    text-align: center;
-    padding: 50px;
-    background-color: rgba(0, 0, 0, 0.7);
-}
-
-.tagline {
-    font-size: 1.2em;
-    font-weight: 300;
-    margin-bottom: 20px;
-}
-
-nav {
-    margin-top: 20px;
-}
-
-nav a {
-    margin: 0 15px;
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s;
-}
-
-nav a:hover {
-    color: #00bcd4; /* Apple-style highlight color */
-}
-
-main {
-    padding: 20px;
-}
-
-#hero {
-    text-align: center;
-    padding: 100px 20px;
-    background: rgba(0, 0, 0, 0.5);
-    margin-bottom: 20px;
-}
-
-#hero h2 {
-    font-size: 2.5em;
-    margin-bottom: 15px;
-}
-
-#hero p {
-    font-size: 1.2em;
-}
-
-.cta-button {
-    display: inline-block;
-    padding: 15px 30px;
-    background-color: #00bcd4;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: background-color 0.3s;
-}
-
-.cta-button:hover {
-    background-color: #008c9e;
-}
-
-.section {
-    padding: 20px;
-    background-color: rgba(0, 0, 0, 0.6);
-    margin: 20px 0;
-    border-radius: 10px;
-}
-
-h2 {
-    color: #00bcd4;
-    margin-bottom: 10px;
-}
-
-footer {
-    text-align: center;
-    padding: 20px;
-    background-color: rgba(0, 0, 0, 0.7);
-}
-
-footer p {
-    font-size: 0.8em;
-}
