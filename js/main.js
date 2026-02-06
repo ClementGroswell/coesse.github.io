@@ -1,25 +1,28 @@
-// Firebase 初始化（可选）
-/*
-const firebaseConfig = {
-  apiKey:"你的APIKEY",
-  authDomain:"你的项目.firebaseapp.com",
-  projectId:"你的项目ID"
-};
-firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
-*/
+// 移动端菜单开关逻辑
+const menuBtn = document.getElementById('mobile-menu-btn');
+const mobileNav = document.getElementById('mobile-nav');
 
-// 注册函数（前端演示，可集成 Firebase 或其他第三方）
-function register(){
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-  if(!email || !password){alert("Fill all fields"); return;}
-  alert("Registration submitted! (Integrate Firebase for real email verification)");
+if (menuBtn) {
+    menuBtn.addEventListener('click', () => {
+        mobileNav.classList.toggle('active');
+        
+        // 按钮动画
+        const spans = menuBtn.querySelectorAll('span');
+        if(mobileNav.classList.contains('active')) {
+            spans[0].style.transform = "rotate(45deg) translate(6px, 6px)";
+            spans[1].style.opacity = "0";
+            spans[2].style.transform = "rotate(-45deg) translate(6px, -6px)";
+        } else {
+            spans[0].style.transform = "none";
+            spans[1].style.opacity = "1";
+            spans[2].style.transform = "none";
+        }
+    });
 }
 
-// 找回密码
-function resetPassword(){
-  const email = document.getElementById("resetEmail").value;
-  if(!email){alert("Enter email"); return;}
-  alert("Password reset requested! (Integrate Firebase for real email link)");
-}
+// 点击背景自动收起
+document.addEventListener('click', (e) => {
+    if (!menuBtn.contains(e.target) && !mobileNav.contains(e.target)) {
+        mobileNav.classList.remove('active');
+    }
+});
