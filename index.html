@@ -1,61 +1,154 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Coesse | Home</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coesse - One World. One Breath</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <header>
+        <h1>Coesse</h1>
+        <p class="tagline">One World. One Breath</p>
+        <nav>
+            <a href="#about">About Us</a>
+            <a href="#mission">Mission</a>
+            <a href="#register">Register</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
 
-    <div class="aurora-container"></div>
+    <main>
+        <section id="hero">
+            <h2>Welcome to Coesse</h2>
+            <p>We are a global volunteer organization dedicated to protecting the Earth and human rights.</p>
+            <a class="cta-button" href="#register">Register Now</a>
+        </section>
 
-    <nav class="navbar">
-        <div class="nav-content">
-            <div class="brand">COESSE</div>
-            
-            <ul class="nav-links desktop-only">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="join.html" class="join-btn">Join Us</a></li>
-            </ul>
+        <section id="about" class="section">
+            <h2>About Us</h2>
+            <p>Coesse is a global volunteer organization that emphasizes the connection between individuals and nature, striving to create a better future for generations to come.</p>
+        </section>
 
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
+        <section id="mission" class="section">
+            <h2>Our Mission</h2>
+            <p>Mobilizing global volunteers to protect the planet and defend human rights for future generations.</p>
+        </section>
 
-    <div class="mobile-drawer" id="mobile-drawer">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="projects.html">Projects</a>
-        <a href="contact.html">Contact</a>
-        <a href="join.html" class="drawer-join-btn">Join Us</a>
-    </div>
-
-    <main class="hero">
-        <div class="glass-card">
-            <h1>Welcome to Coesse</h1>
-            <p>Redefining structure through the chaos. <br>Not OXYN, but evolution.</p>
-            <div class="cta-area">
-                <a href="projects.html" class="main-button">Explore Projects</a>
-            </div>
-        </div>
+        <section id="contact" class="section">
+            <h2>Contact Us</h2>
+            <p>Email: <a href="mailto:oneworld@coesse.org">oneworld@coesse.org</a></p>
+        </section>
     </main>
 
     <footer>
-        <div class="footer-wrap">
-            <p class="copyright">© 2026 Coesse. All Rights Reserved. 版权所有。</p>
-            <p class="email-info">如果您有任何问题请联系我们的官方邮箱: <a href="mailto:oneworld@coesse.org">oneworld@coesse.org</a></p>
-        </div>
+        <p>&copy; 2023 Coesse. All rights reserved.</p>
     </footer>
 
-    <script src="js/main.js" type="module"></script>
+    <script src="script.js"></script>
 </body>
 </html>
+```
+
+#### `style.css`
+```css
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-image: url('bg.jpg'); /* Replace with your aurora background image */
+    background-size: cover;
+    background-position: center;
+    color: white;
+    line-height: 1.6;
+}
+
+header {
+    text-align: center;
+    padding: 50px;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.tagline {
+    font-size: 1.2em;
+    font-weight: 300;
+    margin-bottom: 20px;
+}
+
+nav {
+    margin-top: 20px;
+}
+
+nav a {
+    margin: 0 15px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #00bcd4; /* Apple-style highlight color */
+}
+
+main {
+    padding: 20px;
+}
+
+#hero {
+    text-align: center;
+    padding: 100px 20px;
+    background: rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+}
+
+#hero h2 {
+    font-size: 2.5em;
+    margin-bottom: 15px;
+}
+
+#hero p {
+    font-size: 1.2em;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #00bcd4;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+    background-color: #008c9e;
+}
+
+.section {
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.6);
+    margin: 20px 0;
+    border-radius: 10px;
+}
+
+h2 {
+    color: #00bcd4;
+    margin-bottom: 10px;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+footer p {
+    font-size: 0.8em;
+}
