@@ -12,29 +12,32 @@ html,body{width:100%;min-height:100vh;color:#fff;overflow-x:hidden;scroll-behavi
 body::before{content:"";position:fixed;left:0;top:0;width:100vw;height:100vh;background:url("bg.jpg") center/cover no-repeat;z-index:-2;opacity:.95}
 body::after{content:"";position:fixed;left:0;top:0;width:100vw;height:100vh;background:rgba(0,0,0,.45);z-index:-1}
 
-/* 导航 —— 去掉玻璃背景，完全干净 */
-nav{position:fixed;top:0;width:100%;padding:20px 5%;display:flex;justify-content:space-between;align-items:center;background:transparent;z-index:999}
-.logo{font-size:24px;font-weight:600;letter-spacing:1px}
-.menu-btn{padding:10px 18px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:12px;color:#fff;font-size:15px;cursor:pointer}
-.menu-panel{position:fixed;top:80px;right:5%;background:rgba(0,0,0,.85);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:24px;min-width:220px;display:none;flex-direction:column;gap:16px}
-.menu-panel.show{display:flex}
-.menu-panel a{color:#fff;text-decoration:none;font-size:16px;padding:8px 0}
+/* 首屏全屏只放标题 + 标语 */
+.hero{
+  width:100%;
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:0 20px;
+}
+.hero h1{font-size:60px;font-weight:700;margin-bottom:20px}
+.hero .tagline{font-size:20px;opacity:.9;margin-bottom:12px;max-width:700px}
+.hero .slogan{font-size:24px;opacity:.9}
 
-/* 整体更紧凑、不留空 */
-.container{max-width:1100px;margin:0 auto;padding:80px 20px 40px}
-.hero{text-align:center;margin-bottom:50px}
-.hero h1{font-size:52px;font-weight:700;margin-bottom:16px}
-.hero .tagline{font-size:18px;opacity:.9;margin-bottom:12px}
-.hero .slogan{font-size:22px;opacity:.9}
-
-.btn{display:inline-block;padding:14px 32px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.3);border-radius:12px;color:#fff;font-size:16px;cursor:pointer}
-.section{margin-bottom:45px}
+/* 内容从第二屏开始 */
+.container{max-width:1100px;margin:0 auto;padding:0 20px 60px}
+.section{padding:60px 0}
 .section h2{font-size:34px;margin-bottom:20px}
-.section p{font-size:18px;line-height:1.7;max-width:850px}
+.section p{font-size:18px;line-height:1.7;max-width:850px;margin-bottom:16px}
 
 .mission-vision{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:30px}
 .card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:30px}
 .card h3{font-size:22px;margin-bottom:12px}
+
+.btn{display:inline-block;padding:14px 32px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.3);border-radius:12px;color:#fff;font-size:16px;cursor:pointer}
 
 /* 模态框 */
 .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:2000;align-items:center;justify-content:center}
@@ -50,68 +53,62 @@ nav{position:fixed;top:0;width:100%;padding:20px 5%;display:flex;justify-content
 .modal-bottom{text-align:center;margin-top:20px;font-size:14px;opacity:.7}
 .modal-bottom a{color:#fff;text-decoration:underline;cursor:pointer}
 
-/* 页脚更紧凑 */
-footer{background:rgba(0,0,0,.6);border-top:1px solid rgba(255,255,255,.08);padding:35px 5% 25px}
+/* 页脚 */
+footer{background:rgba(0,0,0,.6);border-top:1px solid rgba(255,255,255,.08);padding:40px 5% 30px}
 .footer-inner{max-width:1100px;margin:0 auto}
-.footer-row{display:flex;flex-wrap:wrap;gap:40px;margin-bottom:25px}
+.footer-row{display:flex;flex-wrap:wrap;gap:40px;margin-bottom:30px}
 .footer-col{flex:1;min-width:200px}
 .copyright{text-align:center;font-size:13px;opacity:.5;padding-top:20px;border-top:1px solid rgba(255,255,255,.05)}
 
-@media(max-width:768px){.hero h1{font-size:36px}.mission-vision{grid-template-columns:1fr}}
+@media(max-width:768px){
+  .hero h1{font-size:42px}
+  .mission-vision{grid-template-columns:1fr}
+}
 </style>
 </head>
 
 <body>
 
-<nav>
-  <div class="logo">Coesse</div>
-  <button class="menu-btn" id="menuToggle">Menu</button>
-  <div class="menu-panel" id="menuPanel">
-    <a href="#about">About Us</a>
-    <a href="#mission">Mission & Vision</a>
-    <a href="#volunteer">Volunteer</a>
-    <a onclick="openModal('loginModal');closePanel()">Sign In</a>
-  </div>
-</nav>
-
-<div class="container">
+<!-- 首屏：只保留 Coesse + 标语 -->
 <section class="hero">
   <h1>Coesse</h1>
   <div class="tagline">A global volunteer organization for planetary protection and human rights</div>
   <div class="slogan">One World. One Breath</div>
 </section>
 
-<section id="about" class="section">
-  <h2>Our Birth</h2>
-  <p>Coesse is a global volunteer organization dedicated to protecting the planet and defending human rights, driven by volunteers who join voluntarily to take action.</p>
-  <p>Coesse was founded because most environmental and human rights organizations often overlook the power of individuals worldwide, overemphasizing the official role of organizations and governments, while being trapped in huge, bloated systems that gradually lose the vitality and efficiency that international organizations should have.</p>
-  <p>For this reason, Coesse has launched a brand-new approach that emphasizes the relationship between individuals, the world, and the planet. Starting from the ordinary: recycling a plastic bottle, respecting others in daily life, and keeping kindness in heart — all these are the beginning of changing human rights and protecting the Earth.</p>
-</section>
+<!-- 从第二屏开始 -->
+<div class="container">
+  <section id="about" class="section">
+    <h2>Our Birth</h2>
+    <p>Coesse is a global volunteer organization dedicated to protecting the planet and defending human rights, driven by volunteers who join voluntarily to take action.</p>
+    <p>Coesse was founded because most environmental and human rights organizations often overlook the power of individuals worldwide, overemphasizing the official role of organizations and governments, while being trapped in huge, bloated systems that gradually lose the vitality and efficiency that international organizations should have.</p>
+    <p>For this reason, Coesse has launched a brand-new approach that emphasizes the relationship between individuals, the world, and the planet. Starting from the ordinary: recycling a plastic bottle, respecting others in daily life, and keeping kindness in heart — all these are the beginning of changing human rights and protecting the Earth.</p>
+  </section>
 
-<section id="mission" class="section">
-  <h2>Mission & Vision</h2>
-  <div class="mission-vision">
-    <div class="card">
-      <h3>Mission</h3>
-      <p>To mobilize global volunteers to protect the planet, defend human rights, and foster a culture of life coexistence for present and future generations.</p>
+  <section id="mission" class="section">
+    <h2>Mission & Vision</h2>
+    <div class="mission-vision">
+      <div class="card">
+        <h3>Mission</h3>
+        <p>To mobilize global volunteers to protect the planet, defend human rights, and foster a culture of life coexistence for present and future generations.</p>
+      </div>
+      <div class="card">
+        <h3>Vision</h3>
+        <p>A future world where humanity and the planet coexist harmoniously, a world where all life and species are respected and protected, and where sustainable development is achieved.</p>
+      </div>
     </div>
-    <div class="card">
-      <h3>Vision</h3>
-      <p>A future world where humanity and the planet coexist harmoniously, a world where all life and species are respected and protected, and where sustainable development is achieved.</p>
-    </div>
-  </div>
-</section>
+  </section>
 
-<section id="volunteer" class="section">
-  <h2>Join Us</h2>
-  <p>Every individual action counts. Join our global volunteer community to protect the planet and defend human rights, starting from today.</p>
-  <div style="margin-top:20px">
-    <button class="btn" onclick="openModal('registerModal')">Register as Volunteer</button>
-  </div>
-</section>
+  <section id="volunteer" class="section">
+    <h2>Join Us</h2>
+    <p>Every individual action counts. Join our global volunteer community to protect the planet and defend human rights, starting from today.</p>
+    <div style="margin-top:20px">
+      <button class="btn" onclick="openModal('registerModal')">Register as Volunteer</button>
+    </div>
+  </section>
 </div>
 
-<!-- Login -->
+<!-- 登录弹窗 -->
 <div id="loginModal" class="modal">
   <div class="modal-box">
     <span class="close" onclick="closeAllModals()">&times;</span>
@@ -126,7 +123,7 @@ footer{background:rgba(0,0,0,.6);border-top:1px solid rgba(255,255,255,.08);padd
   </div>
 </div>
 
-<!-- Register -->
+<!-- 注册弹窗 -->
 <div id="registerModal" class="modal">
   <div class="modal-box">
     <span class="close" onclick="closeAllModals()">&times;</span>
@@ -145,7 +142,7 @@ footer{background:rgba(0,0,0,.6);border-top:1px solid rgba(255,255,255,.08);padd
   </div>
 </div>
 
-<!-- Forgot -->
+<!-- 忘记密码 -->
 <div id="forgotModal" class="modal">
   <div class="modal-box">
     <span class="close" onclick="closeAllModals()">&times;</span>
@@ -170,10 +167,6 @@ footer{background:rgba(0,0,0,.6);border-top:1px solid rgba(255,255,255,.08);padd
 <script>
 let currentCaptcha="";
 const disposableDomains=["tempmail.com","temp-mail.org","throwawaymail.com","10minutemail.com","mailinator.com","guerrillamail.com","yopmail.com","trashmail.com"];
-const menuPanel=document.getElementById("menuPanel");
-function toggleMenu(){menuPanel.classList.toggle("show")}
-function closePanel(){menuPanel.classList.remove("show")}
-document.getElementById("menuToggle").onclick=toggleMenu;
 
 function genCaptcha(){const chars="ABCDEFGHJKLMNPQRSTUVWXYZ23456789";let code="";for(let i=0;i<4;i++)code+=chars[Math.floor(Math.random()*chars.length)];currentCaptcha=code;document.getElementById("captchaImg").innerText=code}
 function openModal(id){closeAllModals();document.getElementById(id).classList.add("show");if(id==="registerModal")genCaptcha()}
