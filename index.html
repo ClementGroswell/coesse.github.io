@@ -10,8 +10,8 @@
             --apple-bg: #000;
             --apple-text: #f5f5f7;
             --apple-sec: #86868b;
-            --glass: rgba(20, 20, 20, 0.7); /* 半透明玻璃，让背景透出来 */
-            --border: rgba(255, 255, 255, 0.15);
+            --glass: rgba(15, 15, 15, 0.7);
+            --border: rgba(255, 255, 255, 0.12);
         }
 
         body, html {
@@ -21,56 +21,80 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* 修复背景：强制覆盖全屏并置于最底层 */
+        /* 核心修复：背景层级与路径 */
         .hero-bg {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.9) 100%),
-                        url('./bg.jpg'); /* 尝试相对路径引用 */
-            background-size: cover; background-position: center; z-index: -1;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            /* 叠加渐变确保文字清晰 */
+            background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.9) 100%),
+                        url('bg.jpg'); /* 注意：确保 bg.jpg 与 index.html 在同一个根目录下 */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: -1;
         }
 
         .main-wrapper {
-            max-width: 600px; margin: 0 auto; padding: 100px 24px;
-            display: flex; flex-direction: column; align-items: center;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 80px 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        header { text-align: center; margin-bottom: 70px; }
-        h1 { font-size: clamp(3rem, 15vw, 5rem); font-weight: 100; letter-spacing: 0.1em; margin: 0; }
-        .tagline { font-size: 0.8rem; font-weight: 400; letter-spacing: 0.5em; color: var(--apple-sec); text-transform: uppercase; margin-top: 15px; }
+        header { text-align: center; margin-bottom: 60px; }
+        h1 { font-size: clamp(3rem, 12vw, 5rem); font-weight: 100; letter-spacing: 0.12em; margin: 0; }
+        .tagline { 
+            font-size: 0.85rem; font-weight: 400; letter-spacing: 0.5em; 
+            color: var(--apple-sec); text-transform: uppercase; margin-top: 20px; 
+        }
 
-        /* 卡片：增加间距，确保文字不溢出 */
+        /* 内容块：加粗美学 */
         .card {
-            background: var(--glass); backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
-            border: 1px solid var(--border); border-radius: 28px;
-            padding: 35px; margin-bottom: 24px; width: 100%; box-sizing: border-box;
+            background: var(--glass);
+            backdrop-filter: blur(50px);
+            -webkit-backdrop-filter: blur(50px);
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            padding: 35px;
+            margin-bottom: 24px;
+            width: 100%;
+            box-sizing: border-box;
         }
         
-        .label { font-size: 0.8rem; font-weight: 900; color: #fff; text-transform: uppercase; letter-spacing: 0.3em; display: block; margin-bottom: 20px; }
+        .label { 
+            font-size: 0.8rem; font-weight: 900; color: #fff; 
+            text-transform: uppercase; letter-spacing: 0.3em; 
+            display: block; margin-bottom: 20px; 
+        }
+
         .card-p { font-size: 1.05rem; line-height: 1.8; font-weight: 300; color: rgba(255,255,255,0.9); }
         .card-p b { font-weight: 800; color: #fff; }
 
-        /* 注册区：精致小巧版 */
-        .reg-container { width: 100%; max-width: 300px; margin-top: 20px; }
+        /* 注册区：精致小巧 */
+        .reg-container { width: 100%; max-width: 320px; margin-top: 20px; }
         .reg-trigger {
-            width: 100%; padding: 14px; background: #fff; border-radius: 999px;
-            border: none; color: #000; font-size: 0.9rem; font-weight: 800;
-            cursor: pointer; transition: 0.3s;
+            width: 100%; padding: 16px; background: #fff; border-radius: 999px;
+            border: none; color: #000; font-size: 0.95rem; font-weight: 800;
+            cursor: pointer; text-align: center;
         }
         
         .reg-panel { 
-            max-height: 0; overflow: hidden; transition: 0.5s ease;
-            background: rgba(0, 0, 0, 0.5); border-radius: 0 0 20px 20px;
+            max-height: 0; overflow: hidden; transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(0, 0, 0, 0.5); border-radius: 0 0 24px 24px;
         }
-        .reg-panel.open { max-height: 300px; padding: 20px; border: 1px solid var(--border); border-top: none; }
+        .reg-panel.open { max-height: 400px; padding: 25px; border: 1px solid var(--border); border-top: none; }
 
         .input-mini {
             width: 100%; background: rgba(255,255,255,0.08); border: 1px solid var(--border);
-            border-radius: 12px; padding: 12px; color: #fff; font-size: 0.9rem; margin-bottom: 10px; box-sizing: border-box;
+            border-radius: 12px; padding: 14px; color: #fff; font-size: 0.9rem; margin-bottom: 12px; box-sizing: border-box; outline: none;
         }
 
-        /* 页脚：纯英文修复 */
+        /* 页脚：全英文 */
         footer {
-            width: 100%; margin-top: 100px; padding: 40px 0; text-align: center;
+            width: 100%; margin-top: 80px; padding: 40px 0; text-align: center;
             border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.8rem; line-height: 2; color: #555;
         }
         .footer-mail { color: #888; font-weight: 800; text-decoration: none; display: block; margin-bottom: 8px; }
@@ -83,35 +107,35 @@
     <div class="main-wrapper">
         <header>
             <h1>COESSE</h1>
-            <div class="tagline">One World. One Breath</div>
+            <div class="tagline">One World. One Breath.</div>
         </header>
 
         <div class="card">
             <span class="label">Origin</span>
             <p class="card-p">
-                We observed that most organizations overlook <b>the power of the individual</b>. Coesse is dedicated to connecting every individual worldwide. Starting from simple actions—recycling a bottle or respecting others—is the true beginning of <b>defending our planet and human rights</b>.
+                We observed that most organizations overlook <b>the power of the individual</b>. Coesse is dedicated to connecting every individual worldwide. Starting from simple actions—recycling a bottle—is the beginning of <b>defending our planet and human rights</b>.
             </p>
         </div>
 
         <div class="card">
             <span class="label">Mission & Vision</span>
             <p class="card-p">
-                <b>Mission:</b> To mobilize global volunteers to protect the planet and uphold and promote human rights.<br><br>
-                <b>Vision:</b> To create a world where all life is respected and sustainable by connecting volunteers around the world!
+                <b>Mission:</b> To mobilize global volunteers to protect the planet and uphold human rights.<br><br>
+                <b>Vision:</b> To create a world where all life is respected by connecting volunteers around the world!
             </p>
         </div>
 
         <div class="reg-container">
             <button class="reg-trigger" onclick="document.getElementById('panel').classList.toggle('open')">Join Action</button>
             <div id="panel" class="reg-panel">
-                <input type="email" class="input-mini" placeholder="Email">
+                <input type="email" class="input-mini" placeholder="Email Address">
                 <input type="password" class="input-mini" placeholder="Password">
-                <button style="width:100%; padding:12px; border-radius:12px; border:none; background:#34c759; color:#fff; font-weight:800; cursor:pointer;">Register</button>
+                <button style="width:100%; padding:14px; border-radius:12px; border:none; background:#34c759; color:#fff; font-weight:800; cursor:pointer;">Confirm</button>
             </div>
         </div>
 
         <footer>
-            <a href="mailto:oneworld@coesse.org" class="footer-mail">Questions? Contact us: oneworld@coesse.org</a>
+            <a href="mailto:oneworld@coesse.org" class="footer-mail">If you have any questions, contact us: oneworld@coesse.org</a>
             <div>All content is protected by copyright © 2026 Coesse.org.</div>
         </footer>
     </div>
