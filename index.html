@@ -1,508 +1,212 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Coesse — One World. One Breath</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coesse — One World. One Breath</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+html,body{width:100%;min-height:100vh;color:#fff;overflow-x:hidden;scroll-behavior:smooth}
 
-    html, body {
-      width: 100%;
-      min-height: 100vh;
-      color: #fff;
-      background: #000;
-      overflow-x: hidden;
-      scroll-behavior: smooth;
-    }
+/* 全屏极光背景（100% 显示） */
+body::before{content:"";position:fixed;left:0;top:0;width:100vw;height:100vh;background:url("bg.jpg") center/cover no-repeat;z-index:-2;opacity:.95}
+body::after{content:"";position:fixed;left:0;top:0;width:100vw;height:100vh;background:rgba(0,0,0,.45);z-index:-1}
 
-    /* 极光背景（修复版：CSS 背景，必显示） */
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: url("bg.jpg") center/cover no-repeat;
-      z-index: -2;
-      opacity: 0.9;
-    }
-    .overlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.45);
-      z-index: -1;
-    }
+/* 导航：仅一个 Menu 按钮 */
+nav{position:fixed;top:0;width:100%;padding:20px 5%;display:flex;justify-content:space-between;align-items:center;background:rgba(0,0,0,.3);backdrop-filter:blur(12px);z-index:999}
+.logo{font-size:24px;font-weight:600;letter-spacing:1px}
+.menu-btn{padding:10px 18px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:12px;color:#fff;font-size:15px;cursor:pointer}
+.menu-panel{position:fixed;top:80px;right:5%;background:rgba(0,0,0,.85);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:24px;min-width:220px;display:none;flex-direction:column;gap:16px;backdrop-filter:blur(12px)}
+.menu-panel.show{display:flex}
+.menu-panel a{color:#fff;text-decoration:none;font-size:16px;padding:8px 0}
 
-    /* 导航：只保留 Logo + 一个菜单按钮 */
-    nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      padding: 20px 5%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(0,0,0,0.3);
-      backdrop-filter: blur(12px);
-      z-index: 999;
-    }
-    .logo {
-      font-size: 24px;
-      font-weight: 600;
-      letter-spacing: 1px;
-    }
+/* 内容区域（减少底部空白） */
+.container{max-width:1100px;margin:0 auto;padding:90px 20px 50px}
+.hero{text-align:center;margin-bottom:60px;animation:fadeIn 1.2s ease-in-out}
+.hero h1{font-size:52px;font-weight:700;margin-bottom:16px}
+.hero .tagline{font-size:18px;opacity:.9;margin-bottom:12px}
+.hero .slogan{font-size:22px;opacity:.9}
 
-    /* 统一一个按钮展开全部菜单 */
-    .menu-btn {
-      padding: 10px 18px;
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 12px;
-      color: #fff;
-      font-size: 15px;
-      cursor: pointer;
-      backdrop-filter: blur(6px);
-    }
-    .menu-panel {
-      position: fixed;
-      top: 80px;
-      right: 5%;
-      background: rgba(0,0,0,0.85);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 16px;
-      padding: 24px;
-      min-width: 220px;
-      display: none;
-      flex-direction: column;
-      gap: 16px;
-      backdrop-filter: blur(12px);
-    }
-    .menu-panel.show {
-      display: flex;
-    }
-    .menu-panel a {
-      color: #fff;
-      text-decoration: none;
-      font-size: 16px;
-      padding: 8px 0;
-    }
+.btn{display:inline-block;padding:14px 32px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.3);border-radius:12px;color:#fff;font-size:16px;cursor:pointer;backdrop-filter:blur(6px)}
+.section{margin-bottom:50px;animation:fadeIn 1s ease-in-out}
+.section h2{font-size:34px;margin-bottom:20px}
+.section p{font-size:18px;line-height:1.7;max-width:850px}
 
-    /* 主体 */
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 140px 20px 120px;
-    }
-    .hero {
-      text-align: center;
-      margin-bottom: 100px;
-      animation: fadeIn 1.2s ease-in-out;
-    }
-    .hero h1 {
-      font-size: 52px;
-      font-weight: 700;
-      margin-bottom: 16px;
-    }
-    .hero .tagline {
-      font-size: 18px;
-      opacity: 0.9;
-      margin-bottom: 12px;
-    }
-    .hero .slogan {
-      font-size: 22px;
-      opacity: 0.9;
-    }
+.mission-vision{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:30px}
+.card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:30px;backdrop-filter:blur(10px)}
+.card h3{font-size:22px;margin-bottom:12px}
 
-    .btn {
-      display: inline-block;
-      padding: 14px 32px;
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.3);
-      border-radius: 12px;
-      color: #fff;
-      font-size: 16px;
-      cursor: pointer;
-      backdrop-filter: blur(6px);
-    }
+/* 模态框 */
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:2000;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
+.modal.show{display:flex}
+.modal-box{background:rgba(20,20,20,.9);border:1px solid rgba(255,255,255,.1);border-radius:20px;max-width:440px;padding:40px 30px;position:relative;backdrop-filter:blur(12px)}
+.close{position:absolute;top:20px;right:20px;font-size:22px;cursor:pointer;opacity:.6}
+.form-group{margin-bottom:20px}
+.form-group label{display:block;margin-bottom:8px;font-size:14px}
+.form-group input{width:100%;padding:14px 16px;border-radius:12px;border:1px solid rgba(255,255,255,.15);background:rgba(0,0,0,.2);color:#fff;font-size:16px}
+.captcha-row{display:flex;gap:10px;align-items:center}
+#captchaImg{width:120px;height:44px;background:rgba(255,255,255,.1);border-radius:8px;display:flex;align-items:center;justify-content:center;letter-spacing:4px}
+.form-tip{font-size:13px;color:#aaa;margin-top:4px}
+.modal-bottom{text-align:center;margin-top:20px;font-size:14px;opacity:.7}
+.modal-bottom a{color:#fff;text-decoration:underline;cursor:pointer}
 
-    .section {
-      margin-bottom: 80px;
-      animation: fadeIn 1s ease-in-out;
-    }
-    .section h2 {
-      font-size: 34px;
-      margin-bottom: 20px;
-    }
-    .section p {
-      font-size: 18px;
-      line-height: 1.7;
-      max-width: 850px;
-    }
+/* 页脚（无多余空白） */
+footer{background:rgba(0,0,0,.6);border-top:1px solid rgba(255,255,255,.08);padding:40px 5% 30px;backdrop-filter:blur(10px)}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-row{display:flex;flex-wrap:wrap;gap:40px;margin-bottom:30px}
+.footer-col{flex:1;min-width:200px}
+.copyright{text-align:center;font-size:13px;opacity:.5;padding-top:20px;border-top:1px solid rgba(255,255,255,.05)}
 
-    .mission-vision {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      margin-top: 30px;
-    }
-    .card {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 16px;
-      padding: 30px;
-      backdrop-filter: blur(10px);
-    }
-    .card h3 {
-      font-size: 22px;
-      margin-bottom: 12px;
-    }
-
-    /* 模态框（完全不变） */
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.6);
-      z-index: 2000;
-      align-items: center;
-      justify-content: center;
-      backdrop-filter: blur(4px);
-    }
-    .modal.show {
-      display: flex;
-    }
-    .modal-box {
-      background: rgba(20,20,20,0.9);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 20px;
-      max-width: 440px;
-      padding: 40px 30px;
-      backdrop-filter: blur(12px);
-      position: relative;
-    }
-    .close {
-      position: absolute;
-      top: 20px; right: 20px;
-      font-size: 22px;
-      cursor: pointer;
-      opacity: 0.6;
-    }
-    .form-group {
-      margin-bottom: 20px;
-    }
-    .form-group label {
-      display: block;
-      margin-bottom: 8px;
-      font-size: 14px;
-    }
-    .form-group input {
-      width: 100%;
-      padding: 14px 16px;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.15);
-      background: rgba(0,0,0,0.2);
-      color: #fff;
-      font-size: 16px;
-    }
-    .captcha-row {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-    }
-    #captchaImg {
-      width: 120px; height: 44px;
-      background: rgba(255,255,255,0.1);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      letter-spacing: 4px;
-    }
-    .form-tip {
-      font-size: 13px;
-      color: #aaa;
-      margin-top: 4px;
-    }
-    .modal-bottom {
-      text-align: center;
-      margin-top: 20px;
-      font-size: 14px;
-      opacity: 0.7;
-    }
-    .modal-bottom a {
-      color: #fff;
-      text-decoration: underline;
-      cursor: pointer;
-    }
-
-    /* 页脚（版权已改 Coesse.org） */
-    footer {
-      background: rgba(0,0,0,0.6);
-      border-top: 1px solid rgba(255,255,255,0.08);
-      padding: 60px 5% 30px;
-      backdrop-filter: blur(10px);
-    }
-    .footer-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-    .footer-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 40px;
-      margin-bottom: 40px;
-    }
-    .footer-col {
-      flex: 1;
-      min-width: 200px;
-    }
-    .copyright {
-      text-align: center;
-      font-size: 13px;
-      opacity: 0.5;
-      padding-top: 20px;
-      border-top: 1px solid rgba(255,255,255,0.05);
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @media (max-width: 768px) {
-      .hero h1 { font-size: 36px; }
-      .mission-vision { grid-template-columns: 1fr; }
-    }
-  </style>
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:768px){.hero h1{font-size:36px}.mission-vision{grid-template-columns:1fr}}
+</style>
 </head>
 
 <body>
-  <div class="overlay"></div>
 
-  <!-- 导航：仅 Logo + 一个菜单按钮 -->
-  <nav>
-    <div class="logo">Coesse</div>
-    <button class="menu-btn" id="menuToggle">Menu</button>
-    <div class="menu-panel" id="menuPanel">
-      <a href="#about">About Us</a>
-      <a href="#mission">Mission & Vision</a>
-      <a href="#volunteer">Volunteer</a>
-      <a onclick="openModal('loginModal'); closePanel()">Sign In</a>
-    </div>
-  </nav>
-
-  <div class="container">
-    <section class="hero">
-      <h1>Coesse</h1>
-      <div class="tagline">A global volunteer organization for planetary protection and human rights</div>
-      <div class="slogan">One World. One Breath</div>
-    </section>
-
-    <section id="about" class="section">
-      <h2>Our Birth</h2>
-      <p>Coesse is a global volunteer organization dedicated to protecting the planet and defending human rights, driven by volunteers who join voluntarily to take action.</p>
-      <p>Coesse was founded because most environmental and human rights organizations often overlook the power of individuals worldwide, overemphasizing the official role of organizations and governments, while being trapped in huge, bloated systems that gradually lose the vitality and efficiency that international organizations should have.</p>
-      <p>For this reason, Coesse has launched a brand-new approach that emphasizes the relationship between individuals, the world, and the planet. Starting from the ordinary: recycling a plastic bottle, respecting others in daily life, and keeping kindness in heart — all these are the beginning of changing human rights and protecting the Earth.</p>
-    </section>
-
-    <section id="mission" class="section">
-      <h2>Mission & Vision</h2>
-      <div class="mission-vision">
-        <div class="card">
-          <h3>Mission</h3>
-          <p>To mobilize global volunteers to protect the planet, defend human rights, and foster a culture of life coexistence for present and future generations.</p>
-        </div>
-        <div class="card">
-          <h3>Vision</h3>
-          <p>A future world where humanity and the planet coexist harmoniously, a world where all life and species are respected and protected, and where sustainable development is achieved.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="volunteer" class="section">
-      <h2>Join Us</h2>
-      <p>Every individual action counts. Join our global volunteer community to protect the planet and defend human rights, starting from today.</p>
-      <div style="margin-top:20px;">
-        <button class="btn" onclick="openModal('registerModal')">Register as Volunteer</button>
-      </div>
-    </section>
+<nav>
+  <div class="logo">Coesse</div>
+  <button class="menu-btn" id="menuToggle">Menu</button>
+  <div class="menu-panel" id="menuPanel">
+    <a href="#about">About Us</a>
+    <a href="#mission">Mission & Vision</a>
+    <a href="#volunteer">Volunteer</a>
+    <a onclick="openModal('loginModal');closePanel()">Sign In</a>
   </div>
+</nav>
 
-  <!-- 登录模态框 -->
-  <div id="loginModal" class="modal">
-    <div class="modal-box">
-      <span class="close" onclick="closeAllModals()">&times;</span>
-      <h2>Sign In</h2>
-      <div class="form-group">
-        <label>Email</label>
-        <input type="email" id="loginEmail" placeholder="your@email.com">
-      </div>
-      <div class="form-group">
-        <label>Password</label>
-        <input type="password" id="loginPwd" placeholder="Your password">
-      </div>
-      <button class="btn" onclick="doLogin()">Sign In</button>
-      <div class="modal-bottom">
-        <a onclick="switchModal('loginModal','forgotModal')">Forgot password?</a><br>
-        Don't have an account? <a onclick="switchModal('loginModal','registerModal')">Register</a>
-      </div>
+<div class="container">
+<section class="hero">
+  <h1>Coesse</h1>
+  <div class="tagline">A global volunteer organization for planetary protection and human rights</div>
+  <div class="slogan">One World. One Breath</div>
+</section>
+
+<section id="about" class="section">
+  <h2>Our Birth</h2>
+  <p>Coesse is a global volunteer organization dedicated to protecting the planet and defending human rights, driven by volunteers who join voluntarily to take action.</p>
+  <p>Coesse was founded because most environmental and human rights organizations often overlook the power of individuals worldwide, overemphasizing the official role of organizations and governments, while being trapped in huge, bloated systems that gradually lose the vitality and efficiency that international organizations should have.</p>
+  <p>For this reason, Coesse has launched a brand-new approach that emphasizes the relationship between individuals, the world, and the planet. Starting from the ordinary: recycling a plastic bottle, respecting others in daily life, and keeping kindness in heart — all these are the beginning of changing human rights and protecting the Earth.</p>
+</section>
+
+<section id="mission" class="section">
+  <h2>Mission & Vision</h2>
+  <div class="mission-vision">
+    <div class="card">
+      <h3>Mission</h3>
+      <p>To mobilize global volunteers to protect the planet, defend human rights, and foster a culture of life coexistence for present and future generations.</p>
+    </div>
+    <div class="card">
+      <h3>Vision</h3>
+      <p>A future world where humanity and the planet coexist harmoniously, a world where all life and species are respected and protected, and where sustainable development is achieved.</p>
     </div>
   </div>
+</section>
 
-  <!-- 注册模态框 -->
-  <div id="registerModal" class="modal">
-    <div class="modal-box">
-      <span class="close" onclick="closeAllModals()">&times;</span>
-      <h2>Volunteer Register</h2>
-      <div class="form-group">
-        <label>Email</label>
-        <input type="email" id="regEmail" placeholder="your@email.com">
-        <div class="form-tip">We do not accept temporary / disposable emails.</div>
-      </div>
-      <div class="form-group">
-        <label>Password</label>
-        <input type="password" id="regPwd" placeholder="At least 6 characters">
-      </div>
-      <div class="form-group">
-        <label>Human Verification</label>
-        <div class="captcha-row">
-          <div id="captchaImg">LOADING</div>
-          <input type="text" id="captchaInput" placeholder="Code" style="flex:1;">
-        </div>
-      </div>
-      <button class="btn" onclick="doRegister()">Register</button>
-      <div class="modal-bottom">
-        Already have an account? <a onclick="switchModal('registerModal','loginModal')">Sign In</a>
-      </div>
+<section id="volunteer" class="section">
+  <h2>Join Us</h2>
+  <p>Every individual action counts. Join our global volunteer community to protect the planet and defend human rights, starting from today.</p>
+  <div style="margin-top:20px">
+    <button class="btn" onclick="openModal('registerModal')">Register as Volunteer</button>
+  </div>
+</section>
+</div>
+
+<!-- Login Modal -->
+<div id="loginModal" class="modal">
+  <div class="modal-box">
+    <span class="close" onclick="closeAllModals()">&times;</span>
+    <h2>Sign In</h2>
+    <div class="form-group"><label>Email</label><input type="email" id="loginEmail" placeholder="your@email.com"></div>
+    <div class="form-group"><label>Password</label><input type="password" id="loginPwd" placeholder="Your password"></div>
+    <button class="btn" onclick="doLogin()">Sign In</button>
+    <div class="modal-bottom">
+      <a onclick="switchModal('loginModal','forgotModal')">Forgot password?</a><br>
+      Don't have an account? <a onclick="switchModal('loginModal','registerModal')">Register</a>
     </div>
   </div>
+</div>
 
-  <!-- 找回密码 -->
-  <div id="forgotModal" class="modal">
-    <div class="modal-box">
-      <span class="close" onclick="closeAllModals()">&times;</span>
-      <h2>Forgot Password</h2>
-      <div class="form-group">
-        <label>Your Email</label>
-        <input type="email" id="forgotEmail" placeholder="Registered email">
-      </div>
-      <button class="btn" onclick="doForgot()">Send Reset Link</button>
-      <div class="modal-bottom">
-        <a onclick="switchModal('forgotModal','loginModal')">Back to Sign In</a>
-      </div>
+<!-- Register Modal -->
+<div id="registerModal" class="modal">
+  <div class="modal-box">
+    <span class="close" onclick="closeAllModals()">&times;</span>
+    <h2>Volunteer Register</h2>
+    <div class="form-group">
+      <label>Email</label><input type="email" id="regEmail" placeholder="your@email.com">
+      <div class="form-tip">We do not accept temporary / disposable emails.</div>
     </div>
+    <div class="form-group"><label>Password</label><input type="password" id="regPwd" placeholder="At least 6 characters"></div>
+    <div class="form-group">
+      <label>Human Verification</label>
+      <div class="captcha-row"><div id="captchaImg">LOADING</div><input type="text" id="captchaInput" placeholder="Code" style="flex:1"></div>
+    </div>
+    <button class="btn" onclick="doRegister()">Register</button>
+    <div class="modal-bottom">Already have an account? <a onclick="switchModal('registerModal','loginModal')">Sign In</a></div>
   </div>
+</div>
 
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-row">
-        <div class="footer-col">
-          <h4>Coesse</h4>
-          <a>One World. One Breath</a>
-        </div>
-        <div class="footer-col">
-          <h4>Contact</h4>
-          <a>oneworld@coesse.org</a>
-        </div>
-        <div class="footer-col">
-          <h4>Legal</h4>
-          <a>Privacy Policy</a>
-          <a>Terms of Service</a>
-          <a>Legal Information</a>
-        </div>
-      </div>
-      <div class="copyright">
-        &copy; 2026 Coesse.org. All rights reserved.
-      </div>
+<!-- Forgot Modal -->
+<div id="forgotModal" class="modal">
+  <div class="modal-box">
+    <span class="close" onclick="closeAllModals()">&times;</span>
+    <h2>Forgot Password</h2>
+    <div class="form-group"><label>Your Email</label><input type="email" id="forgotEmail" placeholder="Registered email"></div>
+    <button class="btn" onclick="doForgot()">Send Reset Link</button>
+    <div class="modal-bottom"><a onclick="switchModal('forgotModal','loginModal')">Back to Sign In</a></div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-row">
+      <div class="footer-col"><h4>Coesse</h4><a>One World. One Breath</a></div>
+      <div class="footer-col"><h4>Contact</h4><a>oneworld@coesse.org</a></div>
+      <div class="footer-col"><h4>Legal</h4><a>Privacy Policy</a><a>Terms of Service</a><a>Legal Information</a></div>
     </div>
-  </footer>
+    <div class="copyright">&copy; 2026 Coesse.org. All rights reserved.</div>
+  </div>
+</footer>
 
-  <script>
-    let currentCaptcha = "";
-    const disposableDomains = [
-      "tempmail.com","temp-mail.org","throwawaymail.com","10minutemail.com",
-      "mailinator.com","guerrillamail.com","yopmail.com","trashmail.com"
-    ];
+<script>
+let currentCaptcha="";
+const disposableDomains=["tempmail.com","temp-mail.org","throwawaymail.com","10minutemail.com","mailinator.com","guerrillamail.com","yopmail.com","trashmail.com"];
+const menuPanel=document.getElementById("menuPanel");
+function toggleMenu(){menuPanel.classList.toggle("show")}
+function closePanel(){menuPanel.classList.remove("show")}
+document.getElementById("menuToggle").onclick=toggleMenu;
 
-    // 菜单
-    const menuPanel = document.getElementById("menuPanel");
-    function toggleMenu() {
-      menuPanel.classList.toggle("show");
-    }
-    function closePanel() {
-      menuPanel.classList.remove("show");
-    }
-    document.getElementById("menuToggle").onclick = toggleMenu;
+function genCaptcha(){const chars="ABCDEFGHJKLMNPQRSTUVWXYZ23456789";let code="";for(let i=0;i<4;i++)code+=chars[Math.floor(Math.random()*chars.length)];currentCaptcha=code;document.getElementById("captchaImg").innerText=code}
+function openModal(id){closeAllModals();document.getElementById(id).classList.add("show");if(id==="registerModal")genCaptcha()}
+function closeAllModals(){document.querySelectorAll(".modal").forEach(m=>m.classList.remove("show"))}
+function switchModal(from,to){document.getElementById(from).classList.remove("show");setTimeout(()=>openModal(to),200)}
+function isDisposableEmail(email){const domain=email.split("@")[1]?.toLowerCase();return disposableDomains.some(d=>domain?.includes(d))}
 
-    // 验证码
-    function genCaptcha() {
-      const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-      let code = "";
-      for(let i=0;i<4;i++) code += chars[Math.floor(Math.random()*chars.length)];
-      currentCaptcha = code;
-      document.getElementById("captchaImg").innerText = code;
-    }
+function doRegister(){
+  const email=document.getElementById("regEmail").value.trim();
+  const pwd=document.getElementById("regPwd").value.trim();
+  const captcha=document.getElementById("captchaInput").value.trim().toUpperCase();
+  if(!email||!pwd||!captcha){alert("Please fill all fields.");return}
+  if(pwd.length<6){alert("Password at least 6 characters.");return}
+  if(isDisposableEmail(email)){alert("Temporary emails are not allowed.");return}
+  if(captcha!==currentCaptcha){alert("Verification code incorrect.");genCaptcha();return}
+  alert("Registration successful!");localStorage.setItem("coesseUser",email);closeAllModals()
+}
 
-    // 模态框
-    function openModal(id) {
-      closeAllModals();
-      document.getElementById(id).classList.add("show");
-      if(id === "registerModal") genCaptcha();
-    }
-    function closeAllModals() {
-      document.querySelectorAll(".modal").forEach(m => m.classList.remove("show"));
-    }
-    function switchModal(from, to) {
-      document.getElementById(from).classList.remove("show");
-      setTimeout(()=>openModal(to), 200);
-    }
+function doLogin(){
+  const email=document.getElementById("loginEmail").value.trim();
+  const pwd=document.getElementById("loginPwd").value.trim();
+  if(!email||!pwd){alert("Please fill email and password.");return}
+  localStorage.setItem("coesseUser",email);alert("Signed in successfully.");closeAllModals()
+}
 
-    // 一次性邮箱检测
-    function isDisposableEmail(email) {
-      const domain = email.split("@")[1]?.toLowerCase();
-      return disposableDomains.some(d => domain?.includes(d));
-    }
+function doForgot(){
+  const email=document.getElementById("forgotEmail").value.trim();
+  if(!email){alert("Please enter your email.");return}
+  alert("A reset link has been sent to your email (demo).");closeAllModals()
+}
 
-    // 注册（前端模拟）
-    function doRegister() {
-      const email = document.getElementById("regEmail").value.trim();
-      const pwd = document.getElementById("regPwd").value.trim();
-      const captcha = document.getElementById("captchaInput").value.trim().toUpperCase();
-      if(!email || !pwd || !captcha) { alert("Please fill all fields."); return; }
-      if(pwd.length < 6) { alert("Password at least 6 characters."); return; }
-      if(isDisposableEmail(email)) { alert("Temporary emails are not allowed."); return; }
-      if(captcha !== currentCaptcha) { alert("Verification code incorrect."); genCaptcha(); return; }
-      alert("Registration successful!");
-      localStorage.setItem("coesseUser", email);
-      closeAllModals();
-    }
-
-    // 登录
-    function doLogin() {
-      const email = document.getElementById("loginEmail").value.trim();
-      const pwd = document.getElementById("loginPwd").value.trim();
-      if(!email || !pwd) { alert("Please fill email and password."); return; }
-      localStorage.setItem("coesseUser", email);
-      alert("Signed in successfully.");
-      closeAllModals();
-    }
-
-    // 找回密码
-    function doForgot() {
-      const email = document.getElementById("forgotEmail").value.trim();
-      if(!email) { alert("Please enter your email."); return; }
-      alert("A reset link has been sent to your email (demo).");
-      closeAllModals();
-    }
-
-    window.onload = genCaptcha;
-  </script>
+window.onload=genCaptcha;
+</script>
 </body>
 </html>
