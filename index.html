@@ -1,74 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Coesse — One World. One Breath</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<link rel="stylesheet" href="css/style.css">
-
-<!-- 可选 Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-auth-compat.js"></script>
-<script src="js/main.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coesse | Home</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<div class="background"></div>
-<div class="overlay"></div>
+    <nav>
+        <div class="brand">COESSE</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="projects.html">Projects</a>
+            <a href="contact.html">Contact</a>
+            <a href="join.html" class="btn-primary">Join Us</a>
+        </div>
+    </nav>
 
-<!-- 导航 -->
-<nav>
-  <strong>Coesse</strong>
-  <div>
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="projects.html">Projects</a>
-    <a href="join.html">Join</a>
-    <a href="contact.html">Contact</a>
-  </div>
-</nav>
+    <main style="flex: 1; display: flex; align-items: center; justify-content: center;">
+        <div class="glass-card" style="text-align: center; max-width: 600px;">
+            <h1>Welcome to Coesse</h1>
+            <p>Redefining structure through the chaos. Not OXYN, but evolution.</p>
+            <br>
+            <a href="projects.html" class="btn-primary">Explore Projects</a>
+        </div>
+    </main>
 
-<!-- 首页内容 -->
-<div class="section">
-  <div class="card" style="text-align:center;">
-    <h1>Coesse</h1>
-    <p>One World. One Breath</p>
-    <p>Protecting the planet · Defending human rights</p>
-  </div>
-
-  <div class="card">
-    <h2>Our Mission</h2>
-    <p>To mobilize global volunteers to protect the planet, defend human rights, and foster coexistence.</p>
-  </div>
-
-  <div class="card">
-    <h2>Our Vision</h2>
-    <p>A world where humanity and nature coexist in harmony, where every life is respected, and collective action shapes a just and sustainable future.</p>
-  </div>
-
-  <!-- 折叠注册表单 -->
-  <div class="card">
-    <h2>Join as Volunteer</h2>
-    <details>
-      <summary>Open Registration</summary>
-      <input id="email" placeholder="Email">
-      <input id="password" type="password" placeholder="Password">
-      <button onclick="register()">Register</button>
-      <hr>
-      <input id="resetEmail" placeholder="Email for password reset">
-      <button onclick="resetPassword()">Reset Password</button>
-    </details>
-  </div>
-
-</div>
-
-<!-- 页脚 -->
-<footer>
-  <p>Official Contact: oneworld@coesse.org</p>
-  <p>Coesse — One World. One Breath</p>
-  <p>© 2026 Coesse Organization</p>
-</footer>
-
+    <script src="js/main.js" type="module"></script>
 </body>
 </html>
