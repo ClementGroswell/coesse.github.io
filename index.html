@@ -42,7 +42,7 @@ html, body {
 .container {
   max-width: 780px;
   margin: 0 auto;
-  padding: 0 24px 100px;
+  padding: 0 24px 80px;
 }
 .section {
   padding: 40px 0;
@@ -78,94 +78,12 @@ html, body {
   color: #444;
 }
 
-.btn {
-  padding: 12px 24px;
-  background: #f0f0f0;
-  border: none;
-  border-radius: 12px;
-  font-size: 15px;
-  cursor: pointer;
-}
-
-.modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.4);
-  align-items: center;
-  justify-content: center;
-  z-index: 999;
-}
-.modal.show {
-  display: flex;
-}
-.modal-box {
-  background: #fff;
-  border-radius: 20px;
-  width: 90%;
-  max-width: 400px;
-  padding: 32px 24px;
-  position: relative;
-}
-.close {
-  position: absolute;
-  top: 20px;
-  right: 24px;
-  font-size: 20px;
-  cursor: pointer;
-}
-.form-group {
-  margin-bottom: 16px;
-}
-.form-group label {
-  display: block;
-  font-size: 14px;
-  margin-bottom: 6px;
-}
-.form-group input {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  font-size: 15px;
-}
-.captcha-row {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-#captchaImg {
-  width: 100px;
-  height: 40px;
-  background: #f1f1f1;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.form-tip {
-  font-size: 12px;
-  color: #666;
-  margin-top: 4px;
-}
-.modal-bottom {
-  text-align: center;
-  margin-top: 16px;
-  font-size: 13px;
-  color: #666;
-}
-.modal-bottom a {
-  color: #007aff;
-  cursor: pointer;
-  text-decoration: none;
-}
-
 footer {
-  background: #f5f5f7;
-  border-top: 1px solid #e5e5ea;
+  background: #F5F5F7;
+  border-top: 1px solid #E5E5E7;
   padding: 24px;
   font-size: 12px;
-  color: #666;
+  color: #6E6E73;
 }
 .footer-inner {
   max-width: 780px;
@@ -177,14 +95,14 @@ footer {
   gap: 8px;
 }
 .footer-contact {
-  color: #333;
+  color: #1D1D1F;
 }
 .footer-links {
   display: flex;
   gap: 16px;
 }
 .footer-links a {
-  color: #666;
+  color: #6E6E73;
   text-decoration: none;
 }
 
@@ -244,98 +162,12 @@ footer {
     <p>Coesse focuses on local, practical, and sustainable action: environmental conservation, community support, education, advocacy, and international collaboration.</p>
     <p>We build long-term, supportive projects rather than short-term campaigns, ensuring meaningful, lasting change.</p>
   </section>
-
-  <section class="section" id="volunteer">
-    <h2>Become a Volunteer</h2>
-    <p>Anyone can join, regardless of background or skill. Join our global network to support events, projects, outreach, and advocacy.</p>
-    <button class="btn" onclick="openModal('registerModal')">Register Now</button>
-  </section>
-
-  <section class="section" id="donate">
-    <h2>Donate</h2>
-    <p>To support our work, please contact our official email:</p>
-    <p><a href="mailto:oneworld@coesse.org" style="color:#007aff;">oneworld@coesse.org</a></p>
-  </section>
-
-  <section class="section" id="events">
-    <h2>Events</h2>
-    <p>We host workshops, cleanups, tree planting, forums, and global campaigns. All are open to volunteers.</p>
-  </section>
-
-  <section class="section" id="partners">
-    <h2>Partners</h2>
-    <p>We collaborate with NGOs, institutions, companies, and communities. For partnership inquiries:</p>
-    <p><a href="mailto:oneworld@coesse.org" style="color:#007aff;">oneworld@coesse.org</a></p>
-  </section>
-
-  <section class="section" id="terms"><h2>User Agreement</h2></section>
-  <section class="section" id="privacy"><h2>Privacy Policy</h2></section>
-  <section class="section" id="legal"><h2>Disclaimer</h2></section>
-</div>
-
-<div id="loginModal" class="modal">
-  <div class="modal-box">
-    <span class="close" onclick="closeAllModals()">&times;</span>
-    <h2>Sign In</h2>
-    <div class="form-group">
-      <label>Email</label>
-      <input type="email" id="loginEmail">
-    </div>
-    <div class="form-group">
-      <label>Password</label>
-      <input type="password" id="loginPwd">
-    </div>
-    <button class="btn" onclick="doLogin()">Sign In</button>
-    <div class="modal-bottom">
-      <a onclick="switchModal('loginModal','forgotModal')">Forgot password?</a><br>
-      <a onclick="switchModal('loginModal','registerModal')">Create account</a>
-    </div>
-  </div>
-</div>
-
-<div id="registerModal" class="modal">
-  <div class="modal-box">
-    <span class="close" onclick="closeAllModals()">&times;</span>
-    <h2>Volunteer Register</h2>
-    <div class="form-group">
-      <label>Email</label>
-      <input type="email" id="regEmail">
-      <div class="form-tip">No temporary emails</div>
-    </div>
-    <div class="form-group">
-      <label>Password</label>
-      <input type="password" id="regPwd">
-    </div>
-    <div class="form-group">
-      <label>Verification</label>
-      <div class="captcha-row">
-        <div id="captchaImg"></div>
-        <input type="text" id="captchaInput" placeholder="Code">
-      </div>
-    </div>
-    <button class="btn" onclick="doRegister()">Register</button>
-  </div>
-</div>
-
-<div id="forgotModal" class="modal">
-  <div class="modal-box">
-    <span class="close" onclick="closeAllModals()">&times;</span>
-    <h2>Forgot Password</h2>
-    <div class="form-group">
-      <label>Email</label>
-      <input type="email" id="forgotEmail">
-    </div>
-    <button class="btn" onclick="doForgot()">Send Link</button>
-    <div class="modal-bottom">
-      <a onclick="switchModal('forgotModal','loginModal')">Back to Sign In</a>
-    </div>
-  </div>
 </div>
 
 <footer>
   <div class="footer-inner">
     <div class="footer-bottom">
-      <div>© 2026 Coesse.org. All rights reserved.</div>
+      <div>&copy; 2026 Coesse.org. All rights reserved.</div>
       <div class="footer-contact">Email: oneworld@coesse.org</div>
       <div class="footer-links">
         <a href="#terms">User Agreement</a>
@@ -346,64 +178,5 @@ footer {
   </div>
 </footer>
 
-<script>
-let currentCaptcha = "";
-const tempEmails = ["tempmail.com","mailinator.com","yopmail.com","trashmail.com","10minutemail.com"];
-
-function genCaptcha() {
-  const c = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-  let r = "";
-  for(let i=0;i<4;i++) r += c[Math.floor(Math.random()*c.length)];
-  currentCaptcha = r;
-  document.getElementById("captchaImg").innerText = r;
-}
-
-function openModal(id) {
-  closeAllModals();
-  document.getElementById(id).classList.add("show");
-  if(id==="registerModal") genCaptcha();
-}
-
-function closeAllModals() {
-  document.querySelectorAll(".modal").forEach(m=>m.classList.remove("show"));
-}
-
-function switchModal(f,t) {
-  document.getElementById(f).classList.remove("show");
-  setTimeout(()=>openModal(t),200);
-}
-
-function isTempMail(e) {
-  const d = e.split("@")[1]?.toLowerCase();
-  return tempEmails.some(x=>d?.includes(x));
-}
-
-function doRegister() {
-  const e = document.getElementById("regEmail").value.trim();
-  const p = document.getElementById("regPwd").value.trim();
-  const g = document.getElementById("captchaInput").value.trim().toUpperCase();
-  if(!e||!p||!g){alert("Fill all fields");return;}
-  if(p.length<6){alert("Min 6 chars");return;}
-  if(isTempMail(e)){alert("No temp emails");return;}
-  if(g!==currentCaptcha){alert("Invalid code");genCaptcha();return;}
-  alert("Registered successfully");
-  closeAllModals();
-}
-
-function doLogin() {
-  const e = document.getElementById("loginEmail").value;
-  const p = document.getElementById("loginPwd").value;
-  if(!e||!p){alert("Fill all fields");return;}
-  alert("Login successful");
-  closeAllModals();
-}
-
-function doForgot() {
-  const e = document.getElementById("forgotEmail").value;
-  if(!e){alert("Enter email");return;}
-  alert("Reset link sent");
-  closeAllModals();
-}
-</script>
 </body>
 </html>
