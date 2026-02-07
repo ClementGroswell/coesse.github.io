@@ -20,7 +20,6 @@ html, body {
   line-height: 1.45;
 }
 
-/* 去掉全屏首屏，内容从顶部开始 */
 .hero {
   width: 100%;
   padding: 80px 24px 60px;
@@ -30,7 +29,6 @@ html, body {
   font-size: 72px;
   font-weight: 600;
   letter-spacing: -1px;
-  color: #111;
   margin-bottom: 24px;
 }
 .hero .sub {
@@ -39,7 +37,6 @@ html, body {
   color: #333;
   max-width: 700px;
   margin: 0 auto 16px;
-  line-height: 1.4;
 }
 .hero .slogan {
   font-size: 24px;
@@ -47,20 +44,19 @@ html, body {
   color: #222;
 }
 
-/* 内容区 */
 .container {
   max-width: 780px;
   margin: 0 auto;
   padding: 0 24px 120px;
 }
 .section {
-  padding: 60px 0;
+  padding: 50px 0;
+  scroll-margin-top: 30px;
 }
 .section h2 {
   font-size: 28px;
   font-weight: 600;
   margin-bottom: 20px;
-  color: #111;
 }
 .section p {
   font-size: 17px;
@@ -88,7 +84,6 @@ html, body {
 }
 .card p {
   font-size: 16px;
-  line-height: 1.5;
   color: #444;
 }
 
@@ -99,13 +94,10 @@ html, body {
   border-radius: 12px;
   font-size: 16px;
   font-weight: 500;
-  color: #111;
-  text-decoration: none;
   border: none;
   cursor: pointer;
 }
 
-/* 模态框 */
 .modal {
   display: none;
   position: fixed;
@@ -148,7 +140,6 @@ html, body {
   padding: 14px 16px;
   border-radius: 12px;
   border: 1px solid #ddd;
-  background: #fff;
   font-size: 16px;
 }
 .captcha-row {
@@ -183,29 +174,28 @@ html, body {
   text-decoration: none;
 }
 
-/* 苹果风格页脚 */
 footer {
   background: #F5F5F7;
   border-top: 1px solid #E5E5E7;
   padding: 40px 24px 20px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   color: #6E6E73;
   font-size: 12px;
   line-height: 1.6;
 }
-
 .footer-inner {
   max-width: 980px;
   margin: 0 auto;
 }
-
 .footer-note {
   margin-bottom: 20px;
   padding-bottom: 20px;
   border-bottom: 1px solid #D2D2D7;
-  color: #6E6E73;
 }
-
+.footer-contact {
+  margin-bottom: 20px;
+  font-weight: 500;
+  color: #1D1D1F;
+}
 .footer-sections {
   display: flex;
   flex-wrap: wrap;
@@ -214,30 +204,25 @@ footer {
   padding-bottom: 20px;
   border-bottom: 1px solid #D2D2D7;
 }
-
 .footer-group {
   flex: 1;
   min-width: 160px;
 }
-
 .footer-group h4 {
   font-size: 12px;
   font-weight: 600;
   color: #1D1D1F;
   margin-bottom: 10px;
 }
-
 .footer-group a {
   display: block;
   color: #6E6E73;
   text-decoration: none;
   margin-bottom: 6px;
 }
-
 .footer-group a:hover {
   text-decoration: underline;
 }
-
 .footer-bottom {
   display: flex;
   flex-wrap: wrap;
@@ -245,127 +230,142 @@ footer {
   align-items: center;
   gap: 12px;
 }
-
-.footer-locale {
-  color: #6E6E73;
-}
-
 .footer-links {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
 }
 
-.footer-links a {
-  color: #6E6E73;
-  text-decoration: none;
-}
-
-.footer-links a:hover {
-  text-decoration: underline;
-}
-
-/* 响应式适配 */
 @media (max-width:768px) {
   .hero h1 { font-size: 52px; }
   .hero .sub { font-size: 20px; }
   .hero .slogan { font-size: 22px; }
   .mission-vision { grid-template-columns: 1fr; }
-
-  /* 移动端页脚折叠 */
   .footer-sections {
     flex-direction: column;
     gap: 0;
     padding-bottom: 0;
     border-bottom: none;
   }
-
   .footer-group {
     border-bottom: 1px solid #D2D2D7;
     padding: 12px 0;
-    min-width: auto;
   }
-
   .footer-group h4 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 0;
     cursor: pointer;
   }
-
   .footer-group h4::after {
     content: "∨";
-    font-size: 14px;
-    color: #6E6E73;
     transition: transform 0.2s;
   }
-
   .footer-group .footer-links {
     display: none;
-    margin-top: 10px;
     flex-direction: column;
     gap: 8px;
+    margin-top: 10px;
   }
-
   .footer-group.active .footer-links {
     display: flex;
   }
-
-  .footer-group.active h4::after {
-    transform: rotate(180deg);
-  }
-
   .footer-bottom {
     flex-direction: column;
     align-items: flex-start;
-    gap: 12px;
   }
 }
 </style>
 </head>
-
 <body>
 
-<!-- 不做全屏首屏，内容从顶部开始 -->
 <section class="hero">
   <h1>Coesse</h1>
-  <div class="sub">A global volunteer organization for planetary protection and human rights</div>
+  <div class="sub">Global volunteer organization for planetary protection and human rights</div>
   <div class="slogan">One World. One Breath</div>
 </section>
 
 <div class="container">
-  <section class="section">
-    <h2>Our Birth</h2>
-    <p>Coesse is a global volunteer organization dedicated to protecting the planet and defending human rights, driven by volunteers who join voluntarily to take action.</p>
-    <p>Coesse was founded because most environmental and human rights organizations often overlook the power of individuals worldwide, overemphasizing the official role of organizations and governments, while being trapped in huge, bloated systems that gradually lose the vitality and efficiency that international organizations should have.</p>
-    <p>For this reason, Coesse has launched a brand-new approach that emphasizes the relationship between individuals, the world, and the planet. Starting from the ordinary: recycling a plastic bottle, respecting others in daily life, and keeping kindness in heart — all these are the beginning of changing human rights and protecting the Earth.</p>
-  </section>
 
-  <section class="section">
-    <h2>Mission & Vision</h2>
-    <div class="mission-vision">
-      <div class="card">
-        <h3>Mission</h3>
-        <p>To mobilize global volunteers to protect the planet, defend human rights, and foster a culture of life coexistence for present and future generations.</p>
-      </div>
-      <div class="card">
-        <h3>Vision</h3>
-        <p>A future world where humanity and the planet coexist harmoniously, a world where all life and species are respected and protected, and where sustainable development is achieved.</p>
-      </div>
-    </div>
-  </section>
+<section class="section" id="our-birth">
+  <h2>Our Birth</h2>
+  <p>Coesse was founded out of a deep concern for growing environmental crises, unequal access to human rights, and the lack of accessible, trusted spaces for ordinary people to take meaningful action.</p>
+  <p>We reject bureaucracy and inefficiency, centering volunteers as the driving force of change. From daily low-carbon choices to community support and global advocacy, Coesse exists to turn good intentions into real impact.</p>
+</section>
 
-  <section class="section">
-    <h2>Join Us</h2>
-    <p>Every individual action counts. Join our global volunteer community to protect the planet and defend human rights, starting from today.</p>
-    <div style="margin-top:20px">
-      <button class="btn" onclick="openModal('registerModal')">Register as Volunteer</button>
+<section class="section" id="mission">
+  <h2>Mission & Vision</h2>
+  <div class="mission-vision">
+    <div class="card">
+      <h3>Mission</h3>
+      <p>To mobilize global volunteers, protect the planet, advance equity and human dignity, and build a sustainable, just future for all.</p>
     </div>
-  </section>
+    <div class="card">
+      <h3>Vision</h3>
+      <p>A world where people and nature thrive in harmony, every life is valued, and all individuals enjoy equal rights and opportunity.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="values">
+  <h2>Core Values</h2>
+  <p><strong>Humanity First</strong>: Respect for every person, defense of fundamental rights, inclusion and equality.</p>
+  <p><strong>Ecological Balance</strong>: Reverence for nature, circular living, and stewardship of the planet.</p>
+  <p><strong>Transparency</strong>: Open, accountable, and efficient operations with no waste or formalism.</p>
+  <p><strong>Volunteer Spirit</strong>: Belief in the power of ordinary people, action over words.</p>
+  <p><strong>Global Local</strong>: Rooted in communities, connected to the world.</p>
+</section>
+
+<section class="section" id="team">
+  <h2>Our Team</h2>
+  <p>Coesse is a global community of volunteers from all backgrounds, nations, ages, and professions. We share a common mission: to protect the planet and advance human rights.</p>
+  <p>Our core team includes environmental advocates, human rights volunteers, designers, engineers, educators, and community workers. We prioritize impact over size, hope over fear.</p>
+</section>
+
+<section class="section" id="intervention">
+  <h2>Our Intervention</h2>
+  <p>Coesse focuses on local, practical, and sustainable action: environmental conservation, community support, education, advocacy, and international collaboration.</p>
+  <p>We build long-term, supportive projects rather than short-term campaigns, ensuring meaningful, lasting change.</p>
+</section>
+
+<section class="section" id="volunteer">
+  <h2>Become a Volunteer</h2>
+  <p>Anyone can join, regardless of background or skill. Join our global network to support events, projects, outreach, and advocacy.</p>
+  <button class="btn" onclick="openModal('registerModal')">Register Now</button>
+</section>
+
+<section class="section" id="donate">
+  <h2>Donate 📬</h2>
+  <p>To support our work, please contact our official email:</p>
+  <p><a href="mailto:oneworld@coesse.org" style="color:#007AFF;">oneworld@coesse.org</a></p>
+  <p>We respond within 24 hours and provide full transparency on fund usage.</p>
+</section>
+
+<section class="section" id="events">
+  <h2>Events</h2>
+  <p>We host workshops, cleanups, tree planting, forums, and global campaigns. All are open to volunteers.</p>
+</section>
+
+<section class="section" id="partners">
+  <h2>Partners</h2>
+  <p>We collaborate with NGOs, institutions, companies, and communities. For partnership inquiries:</p>
+  <p><a href="mailto:oneworld@coesse.org" style="color:#007AFF;">oneworld@coesse.org</a></p>
+</section>
+
+<section class="section" id="news"><h2>News</h2></section>
+<section class="section" id="reports"><h2>Reports</h2></section>
+<section class="section" id="press"><h2>Press</h2></section>
+<section class="section" id="faq"><h2>FAQ</h2></section>
+
+<section class="section" id="legal"><h2>Legal</h2></section>
+<section class="section" id="privacy"><h2>Privacy Policy</h2></section>
+<section class="section" id="terms"><h2>Terms of Service</h2></section>
+<section class="section" id="cookies"><h2>Cookie Policy</h2></section>
+<section class="section" id="licenses"><h2>Licenses</h2></section>
+<section class="section" id="sitemap"><h2>Sitemap</h2></section>
+
 </div>
 
-<!-- 登录弹窗 -->
 <div id="loginModal" class="modal">
   <div class="modal-box">
     <span class="close" onclick="closeAllModals()">&times;</span>
@@ -376,17 +376,16 @@ footer {
     </div>
     <div class="form-group">
       <label>Password</label>
-      <input type="password" id="loginPwd" placeholder="Your password">
+      <input type="password" id="loginPwd">
     </div>
     <button class="btn" onclick="doLogin()">Sign In</button>
     <div class="modal-bottom">
       <a onclick="switchModal('loginModal','forgotModal')">Forgot password?</a><br>
-      Don't have an account? <a onclick="switchModal('loginModal','registerModal')">Register</a>
+      <a onclick="switchModal('loginModal','registerModal')">Create account</a>
     </div>
   </div>
 </div>
 
-<!-- 注册弹窗 -->
 <div id="registerModal" class="modal">
   <div class="modal-box">
     <span class="close" onclick="closeAllModals()">&times;</span>
@@ -394,105 +393,100 @@ footer {
     <div class="form-group">
       <label>Email</label>
       <input type="email" id="regEmail" placeholder="your@email.com">
-      <div class="form-tip">We do not accept temporary / disposable emails.</div>
+      <div class="form-tip">No temporary emails</div>
     </div>
     <div class="form-group">
       <label>Password</label>
-      <input type="password" id="regPwd" placeholder="At least 6 characters">
+      <input type="password" id="regPwd">
     </div>
     <div class="form-group">
-      <label>Human Verification</label>
+      <label>Verification</label>
       <div class="captcha-row">
-        <div id="captchaImg">CODE</div>
-        <input type="text" id="captchaInput" placeholder="Code" style="flex:1">
+        <div id="captchaImg"></div>
+        <input type="text" id="captchaInput" placeholder="Code">
       </div>
     </div>
     <button class="btn" onclick="doRegister()">Register</button>
-    <div class="modal-bottom">
-      Already have an account? <a onclick="switchModal('registerModal','loginModal')">Sign In</a>
-    </div>
   </div>
 </div>
 
-<!-- 忘记密码弹窗 -->
 <div id="forgotModal" class="modal">
   <div class="modal-box">
     <span class="close" onclick="closeAllModals()">&times;</span>
     <h2>Forgot Password</h2>
     <div class="form-group">
-      <label>Your Email</label>
-      <input type="email" id="forgotEmail" placeholder="Registered email">
+      <label>Email</label>
+      <input type="email" id="forgotEmail">
     </div>
-    <button class="btn" onclick="doForgot()">Send Reset Link</button>
+    <button class="btn" onclick="doForgot()">Send Link</button>
     <div class="modal-bottom">
       <a onclick="switchModal('forgotModal','loginModal')">Back to Sign In</a>
     </div>
   </div>
 </div>
 
-<!-- 苹果风格页脚 -->
 <footer>
   <div class="footer-inner">
     <div class="footer-note">
-      Coesse is a global volunteer organization dedicated to planetary protection and human rights. 
-      All content © 2026 Coesse.org.
+      Coesse is a global volunteer organization dedicated to planetary protection and human rights.
+      © 2026 Coesse.org. All rights reserved.
+    </div>
+
+    <div class="footer-contact">
+      Official Email: <a href="mailto:oneworld@coesse.org" style="color:#007AFF;">oneworld@coesse.org</a>
     </div>
 
     <div class="footer-sections">
       <div class="footer-group">
         <h4>About Coesse</h4>
         <div class="footer-links">
-          <a href="#about">Our Birth</a>
+          <a href="#our-birth">Our Birth</a>
           <a href="#mission">Mission & Vision</a>
-          <a href="#">Values</a>
-          <a href="#">Team</a>
+          <a href="#values">Values</a>
+          <a href="#team">Team</a>
+          <a href="#intervention">Intervention</a>
         </div>
       </div>
 
       <div class="footer-group">
         <h4>Get Involved</h4>
         <div class="footer-links">
-          <a href="#volunteer">Register as Volunteer</a>
-          <a href="#">Donate</a>
-          <a href="#">Events</a>
-          <a href="#">Partners</a>
+          <a href="#volunteer">Become a Volunteer</a>
+          <a href="#donate">Donate</a>
+          <a href="#events">Events</a>
+          <a href="#partners">Partners</a>
         </div>
       </div>
 
       <div class="footer-group">
         <h4>Resources</h4>
         <div class="footer-links">
-          <a href="#">News</a>
-          <a href="#">Reports</a>
-          <a href="#">Press</a>
-          <a href="#">FAQ</a>
+          <a href="#news">News</a>
+          <a href="#reports">Reports</a>
+          <a href="#press">Press</a>
+          <a href="#faq">FAQ</a>
         </div>
       </div>
 
       <div class="footer-group">
         <h4>Legal</h4>
         <div class="footer-links">
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Service</a>
-          <a href="#">Cookie Policy</a>
-          <a href="#">Licenses</a>
+          <a href="#legal">Legal</a>
+          <a href="#privacy">Privacy Policy</a>
+          <a href="#terms">Terms</a>
+          <a href="#cookies">Cookie Policy</a>
+          <a href="#licenses">Licenses</a>
         </div>
       </div>
     </div>
 
     <div class="footer-bottom">
-      <div class="copyright">
-        &copy; 2026 Coesse.org. All rights reserved.
-      </div>
-      <div class="footer-locale">
-        Global
-      </div>
+      <div>© 2026 Coesse.org</div>
       <div class="footer-links">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Use</a>
-        <a href="#">Sales & Refunds</a>
-        <a href="#">Legal</a>
-        <a href="#">Site Map</a>
+        <a href="#privacy">Privacy</a>
+        <a href="#terms">Terms</a>
+        <a href="#cookies">Cookies</a>
+        <a href="#sitemap">Sitemap</a>
       </div>
     </div>
   </div>
@@ -500,78 +494,66 @@ footer {
 
 <script>
 let currentCaptcha = "";
-const disposableDomains = ["tempmail.com","temp-mail.org","throwawaymail.com","10minutemail.com","mailinator.com","guerrillamail.com","yopmail.com","trashmail.com"];
+const tempEmails = ["tempmail.com","mailinator.com","yopmail.com","trashmail.com","10minutemail.com"];
 
-// 验证码生成
 function genCaptcha() {
-  const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-  let code = "";
-  for(let i=0;i<4;i++) code += chars[Math.floor(Math.random()*chars.length)];
-  currentCaptcha = code;
-  document.getElementById("captchaImg").innerText = code;
+  const c = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+  let r = "";
+  for(let i=0;i<4;i++) r += c[Math.floor(Math.random()*c.length)];
+  currentCaptcha = r;
+  document.getElementById("captchaImg").innerText = r;
 }
 
-// 弹窗控制
 function openModal(id) {
   closeAllModals();
   document.getElementById(id).classList.add("show");
-  if(id === "registerModal") genCaptcha();
+  if(id==="registerModal") genCaptcha();
 }
 
 function closeAllModals() {
-  document.querySelectorAll(".modal").forEach(m => m.classList.remove("show"));
+  document.querySelectorAll(".modal").forEach(m=>m.classList.remove("show"));
 }
 
-function switchModal(from, to) {
-  document.getElementById(from).classList.remove("show");
-  setTimeout(() => openModal(to), 200);
+function switchModal(f,t) {
+  document.getElementById(f).classList.remove("show");
+  setTimeout(()=>openModal(t),200);
 }
 
-// 一次性邮箱检测
-function isDisposableEmail(email) {
-  const domain = email.split("@")[1]?.toLowerCase();
-  return disposableDomains.some(d => domain?.includes(d));
+function isTempMail(e) {
+  const d = e.split("@")[1]?.toLowerCase();
+  return tempEmails.some(x=>d?.includes(x));
 }
 
-// 注册
 function doRegister() {
-  const email = document.getElementById("regEmail").value.trim();
-  const pwd = document.getElementById("regPwd").value.trim();
-  const captcha = document.getElementById("captchaInput").value.trim().toUpperCase();
-  if (!email || !pwd || !captcha) { alert("Please fill all fields."); return; }
-  if (pwd.length < 6) { alert("Password at least 6 characters."); return; }
-  if (isDisposableEmail(email)) { alert("Temporary emails are not allowed."); return; }
-  if (captcha !== currentCaptcha) { alert("Verification code incorrect."); genCaptcha(); return; }
-  alert("Registration successful!");
+  const e = document.getElementById("regEmail").value.trim();
+  const p = document.getElementById("regPwd").value.trim();
+  const g = document.getElementById("captchaInput").value.trim().toUpperCase();
+  if(!e||!p||!g){alert("Fill all fields");return;}
+  if(p.length<6){alert("Min 6 chars");return;}
+  if(isTempMail(e)){alert("No temp emails");return;}
+  if(g!==currentCaptcha){alert("Invalid code");genCaptcha();return;}
+  alert("Registered successfully");
   closeAllModals();
 }
 
-// 登录
 function doLogin() {
-  const email = document.getElementById("loginEmail").value.trim();
-  const pwd = document.getElementById("loginPwd").value.trim();
-  if (!email || !pwd) { alert("Please fill email and password."); return; }
-  alert("Signed in successfully.");
+  const e = document.getElementById("loginEmail").value;
+  const p = document.getElementById("loginPwd").value;
+  if(!e||!p){alert("Fill all fields");return;}
+  alert("Login successful");
   closeAllModals();
 }
 
-// 忘记密码
 function doForgot() {
-  const email = document.getElementById("forgotEmail").value.trim();
-  if (!email) { alert("Please enter your email."); return; }
-  alert("A reset link has been sent to your email (demo).");
+  const e = document.getElementById("forgotEmail").value;
+  if(!e){alert("Enter email");return;}
+  alert("Reset link sent");
   closeAllModals();
 }
 
-// 移动端页脚折叠菜单
-document.querySelectorAll('.footer-group h4').forEach(header => {
-  header.addEventListener('click', () => {
-    const group = header.parentElement;
-    group.classList.toggle('active');
-  });
+document.querySelectorAll('.footer-group h4').forEach(h=>{
+  h.addEventListener('click',()=>h.parentElement.classList.toggle('active'));
 });
-
-genCaptcha();
 </script>
 </body>
 </html>
