@@ -12,7 +12,7 @@ html,body{width:100%;min-height:100vh;color:#fff;overflow-x:hidden;scroll-behavi
 body::before{content:"";position:fixed;left:0;top:0;width:100vw;height:100vh;background:url("bg.jpg") center/cover no-repeat;z-index:-2;opacity:.95}
 body::after{content:"";position:fixed;left:0;top:0;width:100vw;height:100vh;background:rgba(0,0,0,.45);z-index:-1}
 
-/* 首屏全屏只放标题 + 标语 */
+/* 首屏：优化排版 + 增加滚动提示 */
 .hero{
   width:100%;
   height:100vh;
@@ -22,10 +22,43 @@ body::after{content:"";position:fixed;left:0;top:0;width:100vw;height:100vh;back
   justify-content:center;
   text-align:center;
   padding:0 20px;
+  position:relative;
 }
-.hero h1{font-size:60px;font-weight:700;margin-bottom:20px}
-.hero .tagline{font-size:20px;opacity:.9;margin-bottom:12px;max-width:700px}
-.hero .slogan{font-size:24px;opacity:.9}
+.hero h1{
+  font-size:72px;
+  font-weight:700;
+  margin-bottom:32px;
+  letter-spacing:1px;
+}
+.hero .tagline{
+  font-size:24px;
+  font-weight:300;
+  opacity:.9;
+  margin-bottom:16px;
+  max-width:750px;
+  line-height:1.4;
+}
+.hero .slogan{
+  font-size:32px;
+  font-weight:400;
+  opacity:.95;
+  letter-spacing:0.5px;
+}
+
+/* 向下滚动箭头 */
+.scroll-indicator{
+  position:absolute;
+  bottom:40px;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:32px;
+  opacity:.6;
+  animation:bounce 2s infinite;
+}
+@keyframes bounce{
+  0%,100%{transform:translateX(-50%) translateY(0);}
+  50%{transform:translateX(-50%) translateY(10px);}
+}
 
 /* 内容从第二屏开始 */
 .container{max-width:1100px;margin:0 auto;padding:0 20px 60px}
@@ -61,7 +94,9 @@ footer{background:rgba(0,0,0,.6);border-top:1px solid rgba(255,255,255,.08);padd
 .copyright{text-align:center;font-size:13px;opacity:.5;padding-top:20px;border-top:1px solid rgba(255,255,255,.05)}
 
 @media(max-width:768px){
-  .hero h1{font-size:42px}
+  .hero h1{font-size:48px;margin-bottom:24px}
+  .hero .tagline{font-size:20px}
+  .hero .slogan{font-size:26px}
   .mission-vision{grid-template-columns:1fr}
 }
 </style>
@@ -69,11 +104,12 @@ footer{background:rgba(0,0,0,.6);border-top:1px solid rgba(255,255,255,.08);padd
 
 <body>
 
-<!-- 首屏：只保留 Coesse + 标语 -->
+<!-- 首屏：优化排版 + 滚动提示 -->
 <section class="hero">
   <h1>Coesse</h1>
   <div class="tagline">A global volunteer organization for planetary protection and human rights</div>
   <div class="slogan">One World. One Breath</div>
+  <div class="scroll-indicator">↓</div>
 </section>
 
 <!-- 从第二屏开始 -->
