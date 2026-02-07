@@ -20,38 +20,34 @@ html, body {
   line-height: 1.45;
 }
 
-/* 首屏 —— 苹果式精准排版：不空、不泛、高级紧凑 */
+/* 去掉全屏首屏，内容从顶部开始 */
 .hero {
   width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 0 24px;
+  padding: 80px 24px 60px;
   text-align: center;
-  gap: 12px;
 }
 .hero h1 {
-  font-size: 64px;
+  font-size: 72px;
   font-weight: 600;
-  letter-spacing: -0.5px;
+  letter-spacing: -1px;
   color: #111;
+  margin-bottom: 24px;
 }
 .hero .sub {
-  font-size: 19px;
+  font-size: 22px;
   font-weight: 400;
   color: #333;
-  max-width: 580px;
+  max-width: 700px;
+  margin: 0 auto 16px;
+  line-height: 1.4;
 }
 .hero .slogan {
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 500;
   color: #222;
-  margin-top: 8px;
 }
 
-/* 内容区 —— 紧凑、干净、不空 */
+/* 内容区 */
 .container {
   max-width: 780px;
   margin: 0 auto;
@@ -73,7 +69,6 @@ html, body {
   margin-bottom: 16px;
 }
 
-/* 卡片 —— 苹果风弱质感，不抢戏 */
 .mission-vision {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -97,7 +92,6 @@ html, body {
   color: #444;
 }
 
-/* 按钮 —— 极简苹果灰 */
 .btn {
   display: inline-block;
   padding: 12px 24px;
@@ -111,7 +105,7 @@ html, body {
   cursor: pointer;
 }
 
-/* 模态框基础保留 */
+/* 模态框 */
 .modal {
   display: none;
   position: fixed;
@@ -189,24 +183,151 @@ html, body {
   text-decoration: none;
 }
 
+/* 苹果风格页脚 */
 footer {
-  background: #F5F5F5;
-  padding: 40px 24px;
-  text-align: center;
-  font-size: 13px;
-  color: #888;
-  border-top: 1px solid #EAEAEA;
+  background: #F5F5F7;
+  border-top: 1px solid #E5E5E7;
+  padding: 40px 24px 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: #6E6E73;
+  font-size: 12px;
+  line-height: 1.6;
 }
 
+.footer-inner {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.footer-note {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #D2D2D7;
+  color: #6E6E73;
+}
+
+.footer-sections {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #D2D2D7;
+}
+
+.footer-group {
+  flex: 1;
+  min-width: 160px;
+}
+
+.footer-group h4 {
+  font-size: 12px;
+  font-weight: 600;
+  color: #1D1D1F;
+  margin-bottom: 10px;
+}
+
+.footer-group a {
+  display: block;
+  color: #6E6E73;
+  text-decoration: none;
+  margin-bottom: 6px;
+}
+
+.footer-group a:hover {
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.footer-locale {
+  color: #6E6E73;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.footer-links a {
+  color: #6E6E73;
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+/* 响应式适配 */
 @media (max-width:768px) {
-  .hero h1 { font-size: 48px; }
+  .hero h1 { font-size: 52px; }
+  .hero .sub { font-size: 20px; }
+  .hero .slogan { font-size: 22px; }
   .mission-vision { grid-template-columns: 1fr; }
+
+  /* 移动端页脚折叠 */
+  .footer-sections {
+    flex-direction: column;
+    gap: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+
+  .footer-group {
+    border-bottom: 1px solid #D2D2D7;
+    padding: 12px 0;
+    min-width: auto;
+  }
+
+  .footer-group h4 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    cursor: pointer;
+  }
+
+  .footer-group h4::after {
+    content: "∨";
+    font-size: 14px;
+    color: #6E6E73;
+    transition: transform 0.2s;
+  }
+
+  .footer-group .footer-links {
+    display: none;
+    margin-top: 10px;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .footer-group.active .footer-links {
+    display: flex;
+  }
+
+  .footer-group.active h4::after {
+    transform: rotate(180deg);
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
 }
 </style>
 </head>
 
 <body>
 
+<!-- 不做全屏首屏，内容从顶部开始 -->
 <section class="hero">
   <h1>Coesse</h1>
   <div class="sub">A global volunteer organization for planetary protection and human rights</div>
@@ -244,7 +365,7 @@ footer {
   </section>
 </div>
 
-<!-- 登录 -->
+<!-- 登录弹窗 -->
 <div id="loginModal" class="modal">
   <div class="modal-box">
     <span class="close" onclick="closeAllModals()">&times;</span>
@@ -265,7 +386,7 @@ footer {
   </div>
 </div>
 
-<!-- 注册 -->
+<!-- 注册弹窗 -->
 <div id="registerModal" class="modal">
   <div class="modal-box">
     <span class="close" onclick="closeAllModals()">&times;</span>
@@ -293,7 +414,7 @@ footer {
   </div>
 </div>
 
-<!-- 忘记密码 -->
+<!-- 忘记密码弹窗 -->
 <div id="forgotModal" class="modal">
   <div class="modal-box">
     <span class="close" onclick="closeAllModals()">&times;</span>
@@ -309,14 +430,79 @@ footer {
   </div>
 </div>
 
+<!-- 苹果风格页脚 -->
 <footer>
-  &copy; 2026 Coesse.org. All rights reserved.
+  <div class="footer-inner">
+    <div class="footer-note">
+      Coesse is a global volunteer organization dedicated to planetary protection and human rights. 
+      All content © 2026 Coesse.org.
+    </div>
+
+    <div class="footer-sections">
+      <div class="footer-group">
+        <h4>About Coesse</h4>
+        <div class="footer-links">
+          <a href="#about">Our Birth</a>
+          <a href="#mission">Mission & Vision</a>
+          <a href="#">Values</a>
+          <a href="#">Team</a>
+        </div>
+      </div>
+
+      <div class="footer-group">
+        <h4>Get Involved</h4>
+        <div class="footer-links">
+          <a href="#volunteer">Register as Volunteer</a>
+          <a href="#">Donate</a>
+          <a href="#">Events</a>
+          <a href="#">Partners</a>
+        </div>
+      </div>
+
+      <div class="footer-group">
+        <h4>Resources</h4>
+        <div class="footer-links">
+          <a href="#">News</a>
+          <a href="#">Reports</a>
+          <a href="#">Press</a>
+          <a href="#">FAQ</a>
+        </div>
+      </div>
+
+      <div class="footer-group">
+        <h4>Legal</h4>
+        <div class="footer-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Cookie Policy</a>
+          <a href="#">Licenses</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="copyright">
+        &copy; 2026 Coesse.org. All rights reserved.
+      </div>
+      <div class="footer-locale">
+        Global
+      </div>
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+        <a href="#">Sales & Refunds</a>
+        <a href="#">Legal</a>
+        <a href="#">Site Map</a>
+      </div>
+    </div>
+  </div>
 </footer>
 
 <script>
 let currentCaptcha = "";
 const disposableDomains = ["tempmail.com","temp-mail.org","throwawaymail.com","10minutemail.com","mailinator.com","guerrillamail.com","yopmail.com","trashmail.com"];
 
+// 验证码生成
 function genCaptcha() {
   const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
   let code = "";
@@ -325,6 +511,7 @@ function genCaptcha() {
   document.getElementById("captchaImg").innerText = code;
 }
 
+// 弹窗控制
 function openModal(id) {
   closeAllModals();
   document.getElementById(id).classList.add("show");
@@ -340,11 +527,13 @@ function switchModal(from, to) {
   setTimeout(() => openModal(to), 200);
 }
 
+// 一次性邮箱检测
 function isDisposableEmail(email) {
   const domain = email.split("@")[1]?.toLowerCase();
   return disposableDomains.some(d => domain?.includes(d));
 }
 
+// 注册
 function doRegister() {
   const email = document.getElementById("regEmail").value.trim();
   const pwd = document.getElementById("regPwd").value.trim();
@@ -357,6 +546,7 @@ function doRegister() {
   closeAllModals();
 }
 
+// 登录
 function doLogin() {
   const email = document.getElementById("loginEmail").value.trim();
   const pwd = document.getElementById("loginPwd").value.trim();
@@ -365,12 +555,21 @@ function doLogin() {
   closeAllModals();
 }
 
+// 忘记密码
 function doForgot() {
   const email = document.getElementById("forgotEmail").value.trim();
   if (!email) { alert("Please enter your email."); return; }
   alert("A reset link has been sent to your email (demo).");
   closeAllModals();
 }
+
+// 移动端页脚折叠菜单
+document.querySelectorAll('.footer-group h4').forEach(header => {
+  header.addEventListener('click', () => {
+    const group = header.parentElement;
+    group.classList.toggle('active');
+  });
+});
 
 genCaptcha();
 </script>
